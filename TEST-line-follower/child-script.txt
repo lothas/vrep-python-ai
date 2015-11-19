@@ -1,0 +1,132 @@
+lineFollow=function(sensorReading)
+	-- Get parameters by robot name:
+	Par = {}
+	for i=1,nMotors do
+		Par[i] = {}
+		for j=1,nSensors+1 do
+			-- Each signal is called by robot name + motor + sensor
+			-- for example: LinearTracer#1_1_2
+			Par[i][j] = simGetFloatSignal(Name.."_"..i.."_"..j)
+			if not Par[i][j] then
+				Par[i][j] = 0
+			end
+		end
+	end
+
+	-- Calculate velocities based on base parameter + sensor reading:
+	-- Vel = A + B*sensorReading[1] + C*sensorReading[2] + ...
+	motVel = {}
+	for i=1,nMotors do
+		motVel[i] = Par[i][1]
+		for j=1,nSensors do
+			motVel[i] = motVel[i] + Par[i][j+1]*(sensorReading[j] and 1 or 0)
+		end
+	end
+	
+	return motVel
+end
+
+threadFunction=function()
+	while simGetSimulationState()~=sim_simulation_advancing_abouttostop do
+		simulationTime=simGetSimulationTime()
+		dt=simulationTime-previousSimulationTime
+		previousSimulationTime=simulationTime
+		state=simGetSimulationState()
+
+		-- Read the sensors:
+		sensorReading={false,false,false}
+		sensorReading[1]=(simReadVisionSensor(leftSensor)==1)
+		sensorReading[2]=(simReadVisionSensor(middleSensor)==1)
+		sensorReading[3]=(simReadVisionSensor(rightSensor)==1)
+
+		-- Decide about left and right velocities:
+		motVel = lineFollow(sensorReading)
+		linearVelocityLeft = motVel[1]
+		linearVelocityRight = motVel[2]
+
+		-- Now make it move!
+		simSetJointTargetVelocity(leftJointDynamic,linearVelocityLeft/wheelRadius)
+		simSetJointTargetVelocity(rightJointDynamic,linearVelocityRight/wheelRadius)
+
+		abs_position=simGetObjectPosition(lineTracerBase,-1)
+		rel_position=simGetObjectPosition(lineTracerBase,line)
+
+		simSwitchThread() -- explicit thread switching: give control to other threads or the main thread
+	end
+end
+
+-- Put some initialization code here:
+objHandle=simGetObjectAssociatedWithScript(sim_handle_self)
+result,robotName=simGetObjectName(objHandle)
+lineTracerBase=simGetObjectHandle("LineTracerBase")
+leftSensor=simGetObjectHandle("LeftSensor")
+middleSensor=simGetObjectHandle("MiddleSensor")
+rightSensor=simGetObjectHandle("RightSensor")
+leftJoint=simGetObjectHandle("LeftJoint")
+rightJoint=simGetObjectHandle("RightJoint")
+leftJointDynamic=simGetObjectHandle("DynamicLeftJoint")
+rightJointDynamic=simGetObjectHandle("DynamicRightJoint")
+
+nominalLinearVelocity=0.3
+wheelRadius=0.027
+
+previousSimulationTime=simGetSimulationTime()
+
+-- ---------- START MODIFIED LT CODE ---------- --
+Script = simGetScriptHandle()
+Object = simGetObjectAssociatedWithScript(Script)
+Name = simGetObjectName(Object)
+
+nMotors = 2
+nSensors = 3
+
+-- Get the proper line handle
+numPos = string.find(Name,"#")
+if not numPos then
+	robotNumber = ""
+else
+	robotNumber = string.sub(Name,numPos)
+end
+line = simGetObjectHandle("StraightLine"..robotNumber)
+-- ---------- END MODIFIED LT CODE ---------- --
+
+-- We want next while-loop to be executed exactly once every main script pass, but since
+-- this script runs in a thread, we explicitely switch threads at the end of the while-loop
+-- Next instruction makes sure one full pass of the while-loop can be executed before switching threads:
+simSetThreadSwitchTiming(99)
+
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+	simAddStatusbarMessage('Lua runtime error: '..err)
+end
+
+-- Put some clean-up code here:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
