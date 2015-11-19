@@ -1,7 +1,12 @@
 __author__ = 'Lothas'
 
-import vrep
 import sys
+import os
+# Get parent directory by joining this file's path [os.path.dirname(os.path.abspath(__file__))] with '..' [os.pardir]
+parentDir = os.path.abspath(os.path.dirname(os.path.abspath(__file__))+'\\'+os.pardir)
+sys.path.insert(0, parentDir)  # Add the parent directory where 'vrep' is located.
+
+import vrep
 import time
 
 print ('Program started')
