@@ -6,4 +6,4 @@ __author__ = 'Jonathan Spitz'
 # To create an object you'll need to provide:
 class Tester():
     def __init__(self):
-        self.something
+        pass

@@ -5,6 +5,6 @@ __author__ = 'Jonathan Spitz'
 # A Picker object selects the best genomes from the given population based on their
 # fitness values.
 # To create an object you'll need to provide:
-class Tester():
+class Picker():
     def __init__(self):
         self.something

@@ -22,8 +22,13 @@ class CurveFitTester():
             gen_fit = self.test_gen(gen)
             fitness.append(gen_fit)
 
+        # fitness = super(CurveFitTester, self).test_pop(pop)
+        # TODO: Figure out how to properly use inheritance in python
+
+        # Plot the best solution
         best = fitness.index(max(fitness))
         self.test_gen(pop[best], 1)
+
         return fitness
 
     def test_gen(self, gen, plot=0):
