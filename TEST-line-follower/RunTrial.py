@@ -44,15 +44,46 @@ for i in range(len(RobotNames)):
             # For each sensor (+ base value)
             SignalName = rN+"_"+str(j+1)+"_"+str(k+1)
             res = vrep.simxSetFloatSignal(clientID, SignalName, Par[j][k],
-                                            vrep.simx_opmode_oneshot)
+                                            vrep.simx_opmode_oneshot_wait)
+
+rbt_names = ["LineTracer", "LineTracer#0", "LineTracer#1"]
+init_pos = []
+rbts = []
+for rbt_name in rbt_names:
+    res, rbt_tmp = vrep.simxGetObjectHandle(clientID, rbt_name, vrep.simx_opmode_oneshot_wait)
+    rbts.append(rbt_tmp)
+    res, pos = vrep.simxGetObjectPosition(clientID, rbts[-1], -1, vrep.simx_opmode_streaming)
+
+time.sleep(0.2)
+for rbt in rbts:
+    res, pos = vrep.simxGetObjectPosition(clientID, rbt, -1, vrep.simx_opmode_buffer)
+    init_pos.append(pos)
+    # print pos
 
 # Start running simulation
 vrep.simxStartSimulation(clientID, vrep.simx_opmode_oneshot)
 
-time.sleep(10)  # wait 10 seconds
+time.sleep(3)  # wait 10 seconds
+
+# Pause the simulation to get results
+vrep.simxPauseSimulation(clientID, vrep.simx_opmode_oneshot)
+pos = []
+for rbt in rbts:
+    res, pos_tmp = vrep.simxGetObjectPosition(clientID, rbt, -1, vrep.simx_opmode_buffer)
+    pos.append(pos_tmp)
+    # print pos_tmp
 
 # Stop running the simulation
 vrep.simxStopSimulation(clientID, vrep.simx_opmode_oneshot)
+
+delta_x = []
+delta_y = []
+for i in range(len(pos)):
+    delta_x.append(pos[i][0] - init_pos[i][0])
+    delta_y.append(pos[i][1] - init_pos[i][1])
+
+print(delta_x)
+print(delta_y)
 
 time.sleep(0.1)
 vrep.simxFinish(clientID)  # close connection to API
