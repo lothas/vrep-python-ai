@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eea8e92-ce7b-4a0f-9482-3ebc42653ebe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Sandbox.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Builder/Builder.py" afterPath="$PROJECT_DIR$/Builder/Builder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GenAlg.py" afterPath="$PROJECT_DIR$/GenAlg.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LineFolGA.py" afterPath="$PROJECT_DIR$/LineFolGA.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tester/LineFolTester.py" afterPath="$PROJECT_DIR$/Tester/LineFolTester.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TEST-line-follower/RunTrial.py" afterPath="$PROJECT_DIR$/TEST-line-follower/RunTrial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sandbox.py" afterPath="$PROJECT_DIR$/Sandbox.py" />
     </list>
     <ignored path="vrep-python-ai.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GenAlg.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GenAlg.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GenAlg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61844486" vertical-offset="1120" max-vertical-offset="1904">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1120" max-vertical-offset="1904">
               <caret line="86" column="75" selection-start-line="86" selection-start-column="75" selection-end-line="86" selection-end-column="75" />
               <folding>
                 <element signature="e#31#49#0" expanded="true" />
@@ -66,12 +60,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sandbox.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Sandbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sandbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.86290324" vertical-offset="485" max-vertical-offset="1122">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding>
+                <element signature="e#31#49#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -158,13 +154,13 @@
         <option value="$PROJECT_DIR$/Tester/Tester.py" />
         <option value="$PROJECT_DIR$/Tester/CurveFitTester.py" />
         <option value="$PROJECT_DIR$/Tester/Sandbox.py" />
-        <option value="$PROJECT_DIR$/Sandbox.py" />
         <option value="$PROJECT_DIR$/TEST-line-follower/RunTrial.py" />
         <option value="$PROJECT_DIR$/Picker/SinglePicker.py" />
         <option value="$PROJECT_DIR$/Builder/Builder.py" />
         <option value="$PROJECT_DIR$/LineFolGA.py" />
         <option value="$PROJECT_DIR$/Tester/LineFolTester.py" />
         <option value="$PROJECT_DIR$/GenAlg.py" />
+        <option value="$PROJECT_DIR$/Sandbox.py" />
       </list>
     </option>
   </component>
@@ -294,7 +290,7 @@
       <recent name="C:\Users\user\Documents\GitHub\vrep-python-ai" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.LineFolGA">
+  <component name="RunManager" selected="Python.Sandbox">
     <configuration default="false" name="SineGA" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -525,9 +521,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.LineFolGA" />
-        <item index="1" class="java.lang.String" itemvalue="Python.RunTrial" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Sandbox" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Sandbox" />
+        <item index="1" class="java.lang.String" itemvalue="Python.LineFolGA" />
+        <item index="2" class="java.lang.String" itemvalue="Python.RunTrial" />
         <item index="3" class="java.lang.String" itemvalue="Python.SineGA" />
         <item index="4" class="java.lang.String" itemvalue="Python.anim_example" />
       </list>
@@ -557,11 +553,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3284974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39792746" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39792746" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -694,14 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sandbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tester/CurveFitTester.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.4827585" vertical-offset="459" max-vertical-offset="1054">
@@ -774,8 +762,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GenAlg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61844486" vertical-offset="1120" max-vertical-offset="1904">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1120" max-vertical-offset="1904">
           <caret line="86" column="75" selection-start-line="86" selection-start-column="75" selection-end-line="86" selection-end-column="75" />
+          <folding>
+            <element signature="e#31#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sandbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86290324" vertical-offset="485" max-vertical-offset="1122">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
           </folding>
