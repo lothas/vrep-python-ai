@@ -23,8 +23,8 @@ from GenAlg import GenAlg
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 300
-    n_generations = 20
+    n_genomes = 15
+    n_generations = 100
 
     base_val = 1
     sens_val = 2
@@ -39,9 +39,11 @@ if __name__ == '__main__':
                   [1-2*top_n, 'rand_pair_pick', 'n_point_cross', 'randn_mut']]
 
     # Create objects
-    tester = LineFolTester.LineFolTester()
+    tester = LineFolTester.LineFolTester(3, 'LineTracer')
     picker = SinglePicker.SinglePicker(top_n)
     builder = Builder.Builder(gen_min, gen_max, n_genomes, build_plan)
 
     GA = GenAlg(n_genomes, n_generations, tester, picker, builder)
     GA = GA.run()
+
+    tester.disconnect()

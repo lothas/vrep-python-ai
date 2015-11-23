@@ -7,7 +7,7 @@ import numpy as np
 # A Builder object creates a new population using a given population by applying
 # reproduction operators like crossover and mutation.
 # To create an object you'll need to provide a build plan for the new generation:
-#   [(pop%, picker, operator1, operator2, ..., operatorn), (pop%, ...), ...]
+#   [(pop%, picker, operator_1, operator_2, ..., operator_n), (pop%, ...), ...]
 #   for example:
 #       [[0.1], [0.1, '', 'mutation'], [0.8, 'rand_pick', 'n_point_cross', 'mutation']]
 class Builder():
@@ -25,11 +25,11 @@ class Builder():
             # required for initial generation
             new_pop = [
                 [g_min+(1-np.random.random())*(g_max-g_min)
-                 for g_min, g_max in zip(self.gen_min, self.gen_max)]
-                for i in range(pop)]
+                 for g_min, g_max in zip(self.gen_min, self.gen_max)] for i in range(pop)]
             parents = [[] for i in range(pop)]
         else:
-            top_pop = [pop[id] for id in top_ids]
+            top_pop = [pop[index] for index in top_ids]
+
             new_pop = []
             parents = []
             for batch in self.build_plan:
@@ -42,7 +42,7 @@ class Builder():
                 # Grab the desired number of genomes from top_pop
                 # (or all of top_pop if n_genomes>len(top_pop))
                 pop_batch = top_pop[:n_genomes]
-                par_batch = [[id] for id in top_ids]
+                par_batch = [[index] for index in top_ids]
                 for step in batch[1:]:
                     # Perform the building step
                     pop_batch, par_batch = \
@@ -57,7 +57,7 @@ class Builder():
     def rand_pick(pop, parents, n_genomes):
         n_pop = len(pop)
         ids = np.random.choice(range(n_pop), n_genomes)
-        return [pop[id] for id in ids], ids
+        return [pop[index] for index in ids], ids
         # Return ids as parents
 
     @staticmethod
@@ -75,7 +75,7 @@ class Builder():
                 ids[2*i:2*i+2] = np.random.choice(range(n_pop), 2)
             parents.append([ids[2*i], ids[2*i+1]])
             i += 1
-        return [pop[id] for id in ids], parents
+        return [pop[index] for index in ids], parents
 
     @staticmethod
     def n_point_cross(pop, parents, n_genomes):

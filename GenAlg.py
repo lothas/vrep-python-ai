@@ -96,8 +96,8 @@ class GenAlg:
 
         if self.verbose:
             print 'Finished running Genetic Algorithm'
-            plt.plot(range(self.nGenerations),self.fit_max)
-            plt.plot(range(self.nGenerations),self.fit_mean)
+            plt.plot(range(self.nGenerations), self.fit_max)
+            plt.plot(range(self.nGenerations), self.fit_mean)
             plt.show()
 
     @staticmethod
