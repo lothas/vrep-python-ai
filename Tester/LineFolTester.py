@@ -67,10 +67,8 @@ class LineFolTester():
         n_trials = int(np.ceil(n_genomes/self.n_robots))
 
         for trial in range(n_trials):
-            genomes = pop[3*trial:3*trial+3]
+            genomes = pop[self.n_robots*trial:self.n_robots*(trial+1)]
             pop_fitness += self.run_trial(genomes, self.robot_names)
-            if len(pop_fitness) > 15:
-                print "shit!"
 
         return pop_fitness
 
@@ -89,7 +87,7 @@ class LineFolTester():
                         print 'Error setting signal '+signal_name+': '+str(res)
 
         # Start running simulation
-        print 'Running trial'
+        # print 'Running trial'
         vrep.simxStartSimulation(self.clientID, vrep.simx_opmode_oneshot)
 
         time.sleep(3)  # wait 3 seconds
@@ -104,11 +102,10 @@ class LineFolTester():
             # print pos_tmp
 
             delta_x = pos[0] - self.robot_pos0[i][0]
-            # delta_y = pos[1] - self.robot_pos0[i][1]
+            delta_y = pos[1] - self.robot_pos0[i][1]
 
-            trial_fitness.append(delta_x)
-            if len(trial_fitness) > 3:
-                print "shit!"
+            # trial_fitness.append(delta_x)
+            trial_fitness.append([delta_x, 1./(1.+20*abs(delta_y))])
 
         # Stop and reset the simulation
         vrep.simxStopSimulation(self.clientID, vrep.simx_opmode_oneshot)

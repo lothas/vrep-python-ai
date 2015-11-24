@@ -1,8 +1,8 @@
 __author__ = 'Jonathan Spitz'
 
 from Tester import LineFolTester
-# from Picker import ParetoPicker
-from Picker import SinglePicker
+from Picker import ParetoPicker
+# from Picker import SinglePicker
 from Builder import Builder
 from GenAlg import GenAlg
 
@@ -23,7 +23,7 @@ from GenAlg import GenAlg
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 15
+    n_genomes = 30
     n_generations = 100
 
     base_val = 1
@@ -39,8 +39,8 @@ if __name__ == '__main__':
                   [1-2*top_n, 'rand_pair_pick', 'n_point_cross', 'randn_mut']]
 
     # Create objects
-    tester = LineFolTester.LineFolTester(3, 'LineTracer')
-    picker = SinglePicker.SinglePicker(top_n)
+    tester = LineFolTester.LineFolTester(6, 'LineTracer')
+    picker = ParetoPicker.ParetoPicker(top_n)
     builder = Builder.Builder(gen_min, gen_max, n_genomes, build_plan)
 
     GA = GenAlg(n_genomes, n_generations, tester, picker, builder)

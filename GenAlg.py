@@ -84,7 +84,7 @@ class GenAlg:
                 print ""
 
             # Select the top population for reproduction
-            top_pop = self.Picker.pick_pop(self.Gens[self.curGen], fitness)
+            top_pop = self.Picker.pick_pop(self.nGenomes, fitness)
 
             # Build the next generation
             new_pop, parents = self.Builder.build_pop(self.Gens[self.curGen], top_pop)

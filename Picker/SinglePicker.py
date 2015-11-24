@@ -13,7 +13,7 @@ class SinglePicker():
         # (can be passed as a % of the population, in which case it will
         #  select the floor(%*pop_size) top genomes.
 
-    def pick_pop(self, pop, fit):
+    def pick_pop(self, n_genomes, fit):
         # Create a structured array
         st_ar = []
         dtype = [('id', int), ('fit1', type(fit))]
@@ -27,7 +27,7 @@ class SinglePicker():
 
         # Select the best items from pop
         if type(self.n_top) == float:
-            n_top = np.floor(self.n_top*len(pop))
+            n_top = np.floor(self.n_top*n_genomes)
         else:
             n_top = self.n_top
         short_list = dsort[:n_top]['id']
