@@ -54,6 +54,9 @@ class LineFolTester():
             self.robot_handles.append(rbt_tmp)
             # Initialize data stream
             vrep.simxGetObjectPosition(self.clientID, self.robot_handles[-1], -1, vrep.simx_opmode_streaming)
+            vrep.simxGetFloatSignal(self.clientID, rbt_name+'_1', vrep.simx_opmode_streaming)
+            vrep.simxGetFloatSignal(self.clientID, rbt_name+'_2', vrep.simx_opmode_streaming)
+            vrep.simxGetFloatSignal(self.clientID, rbt_name+'_3', vrep.simx_opmode_streaming)
 
         time.sleep(0.2)
         for rbt in self.robot_handles:
@@ -68,14 +71,14 @@ class LineFolTester():
 
         for trial in range(n_trials):
             genomes = pop[self.n_robots*trial:self.n_robots*(trial+1)]
-            pop_fitness += self.run_trial(genomes, self.robot_names)
+            pop_fitness += self.run_trial(genomes)
 
         return pop_fitness
 
-    def run_trial(self, genomes, names):
+    def run_trial(self, genomes):
         # Set the signals for each robot
-        for genome, robot in zip(genomes, names):
-            par = [genome[:3], genome[3:]]
+        for genome, robot in zip(genomes, self.robot_names):
+            par = [genome[:4], genome[4:]]
             for j in range(len(par)):
                 # For each motor
                 for k in range(len(par[j])):
@@ -83,36 +86,95 @@ class LineFolTester():
                     signal_name = robot+"_"+str(j+1)+"_"+str(k+1)
                     res = vrep.simxSetFloatSignal(self.clientID, signal_name, par[j][k],
                                                   vrep.simx_opmode_oneshot)
-                    if res:
+                    if res > 1:
                         print 'Error setting signal '+signal_name+': '+str(res)
 
         # Start running simulation
         # print 'Running trial'
         vrep.simxStartSimulation(self.clientID, vrep.simx_opmode_oneshot)
 
-        time.sleep(3)  # wait 3 seconds
+        # Initialize output arrays
+        sim_time = [[] for i in range(self.n_robots)]
+        robot_x = [[] for i in range(self.n_robots)]
+        robot_y = [[] for i in range(self.n_robots)]
+        init_pos = [[] for i in range(self.n_robots)]
+        fit_y = [0 for i in range(self.n_robots)]
 
-        # Pause the simulation
-        vrep.simxPauseSimulation(self.clientID, vrep.simx_opmode_oneshot)
+        t_step = 0.01  # how often to check the simulation's signals
+        t_flag = time.time()+t_step
+        once = True
+        new_data = [0 for i in range(self.n_robots)]
+        go_loop = True
 
+        while go_loop:
+            now = time.time()
+            if now > t_flag:
+                t_flag = now+t_step
+
+                # Get info from robot
+                for i in range(self.n_robots):
+                    res1, in1 = vrep.simxGetFloatSignal(self.clientID,
+                                                        self.robot_names[i]+'_1', vrep.simx_opmode_buffer)
+                    res2, in2 = vrep.simxGetFloatSignal(self.clientID,
+                                                        self.robot_names[i]+'_2', vrep.simx_opmode_buffer)
+                    res3, in3 = vrep.simxGetFloatSignal(self.clientID,
+                                                        self.robot_names[i]+'_3', vrep.simx_opmode_buffer)
+                    if res1 == 0 and res2 == 0 and res3 == 0:
+                        sim_time[i].append(in1)
+                        robot_x[i].append(in2)
+                        robot_y[i].append(in3)
+                        new_data[i] = 1  # new data arrived
+
+                if once:
+                    if sum(new_data) == self.n_robots:
+                        for i in range(self.n_robots):
+                            init_pos[i] = [robot_x[i][-1], robot_y[i][-1]]
+                        once = False
+                else:
+                    for i in range(self.n_robots):
+                        if new_data[i] == 1:
+                            fit_y[i] += abs(robot_y[i][-1])*(sim_time[i][-1]-sim_time[i][-2])
+                            new_data[i] = 0
+                            if sim_time[i][-1] > 3:  # time limit for the simulation
+                                go_loop = False
+                                break
+
+        # # Pause the simulation
+        # vrep.simxPauseSimulation(self.clientID, vrep.simx_opmode_oneshot)
+        # time.sleep(0.15)
+        #
+        # trial_fitness = []
+        # # Get the trial results for each robot
+        # for i in range(len(self.robot_handles)):
+        #     res, pos = vrep.simxGetObjectPosition(self.clientID, self.robot_handles[i], -1, vrep.simx_opmode_buffer)
+        #     # print pos_tmp
+        #
+        #     delta_x = pos[0] - self.robot_pos0[i][0]
+        #     delta_y = pos[1] - self.robot_pos0[i][1]
+        #
+        #     # trial_fitness.append(delta_x)
+        #     trial_fitness.append([delta_x, 1./(1.+20*abs(delta_y))])
         trial_fitness = []
-        # Get the trial results for each robot
-        for i in range(len(self.robot_handles)):
-            res, pos = vrep.simxGetObjectPosition(self.clientID, self.robot_handles[i], -1, vrep.simx_opmode_buffer)
-            # print pos_tmp
-
-            delta_x = pos[0] - self.robot_pos0[i][0]
-            delta_y = pos[1] - self.robot_pos0[i][1]
-
-            # trial_fitness.append(delta_x)
-            trial_fitness.append([delta_x, 1./(1.+20*abs(delta_y))])
+        for i in range(self.n_robots):
+            x_fit = robot_x[i][-1] - init_pos[i][0]
+            y_fit = 1/(1+20*fit_y[i])
+            trial_fitness.append([x_fit, y_fit])
 
         # Stop and reset the simulation
         vrep.simxStopSimulation(self.clientID, vrep.simx_opmode_oneshot)
-        time.sleep(0.2)
+        time.sleep(0.35)
 
         return trial_fitness
 
     def disconnect(self):
         time.sleep(0.1)
         vrep.simxFinish(self.clientID)  # close connection to API
+
+
+if __name__ == '__main__':
+    tester = LineFolTester(4, 'LineFolR')
+    res = tester.run_trial([[6, 6, -6, -6, 6, -6, -6, 6],
+                            [2, 6, -6, -6, 2, -6, -6, 6],
+                            [10, 0, -0, -0, 6, -0, -0, 0],
+                            [2, 0,  0, -0, 3, -0, 0, 0]])
+    print res

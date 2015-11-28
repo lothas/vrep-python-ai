@@ -23,11 +23,11 @@ from GenAlg import GenAlg
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 30
+    n_genomes = 60
     n_generations = 100
 
-    base_val = 1
-    sens_val = 2
+    base_val = 2
+    sens_val = 4
     gen_max = [base_val, sens_val, sens_val, sens_val,
                base_val, sens_val, sens_val, sens_val]
     gen_min = [-val for val in gen_max]
@@ -39,7 +39,7 @@ if __name__ == '__main__':
                   [1-2*top_n, 'rand_pair_pick', 'n_point_cross', 'randn_mut']]
 
     # Create objects
-    tester = LineFolTester.LineFolTester(6, 'LineTracer')
+    tester = LineFolTester.LineFolTester(5, 'LineFolR')
     picker = ParetoPicker.ParetoPicker(top_n)
     builder = Builder.Builder(gen_min, gen_max, n_genomes, build_plan)
 
