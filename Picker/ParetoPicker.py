@@ -14,6 +14,7 @@ class ParetoPicker():
         self.n_top = n  # number of top genomes to select from population
         # (can be passed as a % of the population, in which case it will
         #  select the floor(%*pop_size) top genomes.
+        self.name = "Pareto picker"
 
     def pick_pop(self, n_genomes, fit):
         # How many items do we need to pick?

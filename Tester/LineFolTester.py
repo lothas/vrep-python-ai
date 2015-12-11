@@ -19,6 +19,7 @@ import numpy as np
 # trial time.
 class LineFolTester():
     def __init__(self, n_robots, base_name):
+        self.name = "line follower tester"
         self.n_robots = n_robots
         self.base_name = base_name
 
@@ -91,7 +92,7 @@ class LineFolTester():
 
         # Start running simulation
         # print 'Running trial'
-        vrep.simxStartSimulation(self.clientID, vrep.simx_opmode_oneshot)
+        vrep.simxStartSimulation(self.clientID, vrep.simx_opmode_oneshot_wait)
 
         # Initialize output arrays
         sim_time = [[] for i in range(self.n_robots)]

@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eea8e92-ce7b-4a0f-9482-3ebc42653ebe" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TEST-line-follower/MyLineFollower.ttt" afterPath="$PROJECT_DIR$/TEST-line-follower/MyLineFollower.ttt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Builder/Builder.py" afterPath="$PROJECT_DIR$/Builder/Builder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tester/CurveFitTester.py" afterPath="$PROJECT_DIR$/Tester/CurveFitTester.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GenAlg.py" afterPath="$PROJECT_DIR$/GenAlg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LineFolGA.py" afterPath="$PROJECT_DIR$/LineFolGA.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tester/LineFolTester.py" afterPath="$PROJECT_DIR$/Tester/LineFolTester.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TEST-line-follower/child-script.txt" afterPath="$PROJECT_DIR$/TEST-line-follower/child-script.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Picker/ParetoPicker.py" afterPath="$PROJECT_DIR$/Picker/ParetoPicker.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Picker/SinglePicker.py" afterPath="$PROJECT_DIR$/Picker/SinglePicker.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vrep-python-ai.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GenAlg.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GenAlg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GenAlg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1284" max-vertical-offset="1904">
-              <caret line="99" column="57" selection-start-line="99" selection-start-column="57" selection-end-line="99" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.5960912" vertical-offset="1011" max-vertical-offset="2635">
+              <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
               <folding>
                 <element signature="e#31#49#0" expanded="true" />
               </folding>
@@ -52,25 +58,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineFolGA.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LineFolGA.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LineFolGA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.119929455" vertical-offset="0" max-vertical-offset="918">
-              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="1037">
+              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
               <folding>
                 <element signature="e#31#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LineFolTester.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tester/LineFolTester.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1817" max-vertical-offset="3145">
-              <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
-              <folding>
-                <element signature="e#31#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,18 +76,6 @@
             <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1615">
               <caret line="34" column="45" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="45" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParetoPicker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Picker/ParetoPicker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="2040">
-              <caret line="26" column="10" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="10" />
-              <folding>
-                <element signature="e#31#49#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -113,17 +95,17 @@
         <option value="$PROJECT_DIR$/Matplotlib_animate.py" />
         <option value="$PROJECT_DIR$/anim_example.py" />
         <option value="$PROJECT_DIR$/Tester/Tester.py" />
-        <option value="$PROJECT_DIR$/Tester/CurveFitTester.py" />
         <option value="$PROJECT_DIR$/Tester/Sandbox.py" />
         <option value="$PROJECT_DIR$/TEST-line-follower/RunTrial.py" />
-        <option value="$PROJECT_DIR$/Builder/Builder.py" />
         <option value="$PROJECT_DIR$/Sandbox.py" />
         <option value="$PROJECT_DIR$/SineGA.py" />
-        <option value="$PROJECT_DIR$/GenAlg.py" />
-        <option value="$PROJECT_DIR$/Picker/SinglePicker.py" />
         <option value="$PROJECT_DIR$/Picker/ParetoPicker.py" />
-        <option value="$PROJECT_DIR$/LineFolGA.py" />
+        <option value="$PROJECT_DIR$/Picker/SinglePicker.py" />
+        <option value="$PROJECT_DIR$/Builder/Builder.py" />
+        <option value="$PROJECT_DIR$/Tester/CurveFitTester.py" />
         <option value="$PROJECT_DIR$/Tester/LineFolTester.py" />
+        <option value="$PROJECT_DIR$/LineFolGA.py" />
+        <option value="$PROJECT_DIR$/GenAlg.py" />
       </list>
     </option>
   </component>
@@ -198,52 +180,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="vrep-python-ai">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="vrep-python-ai">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Tester">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="vrep-python-ai">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="TEST-line-follower">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="vrep-python-ai">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Picker">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -255,6 +191,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -537,11 +474,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3208502" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3208502" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39777327" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39777327" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -576,9 +513,9 @@
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Tester/LineFolTester.py</url>
-          <line>164</line>
-          <option name="timeStamp" value="47" />
+          <url>file://$PROJECT_DIR$/GenAlg.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -588,11 +525,73 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="49" />
+      <option name="time" value="56" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="data[1][-1]" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/GenAlg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="1938">
+          <caret line="62" column="91" selection-start-line="62" selection-start-column="91" selection-end-line="62" selection-end-column="91" />
+          <folding>
+            <element signature="e#31#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sandbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1827" max-vertical-offset="2380">
+          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding>
+            <element signature="e#31#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LineFolGA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#31#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tester/LineFolTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2578" max-vertical-offset="3145">
+          <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding>
+            <element signature="e#31#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TEST-line-follower/RunTrial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1615">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Picker/ParetoPicker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="2040">
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="10" />
+          <folding>
+            <element signature="e#31#49#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GenAlg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1375" max-vertical-offset="1904">
@@ -607,7 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="238">
           <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,7 +614,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="406" max-vertical-offset="969">
           <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
           <folding>
-            <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#31#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -625,9 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#31#49#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -668,17 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tester/CurveFitTester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.4827585" vertical-offset="459" max-vertical-offset="1054">
-          <caret line="50" column="37" selection-start-line="17" selection-start-column="0" selection-end-line="50" selection-end-column="37" />
-          <folding>
-            <element signature="e#31#49#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -686,7 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -694,45 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="935">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding>
-            <element signature="e#31#49#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Picker/SinglePicker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="59" max-vertical-offset="697">
-          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Picker/ParetoPicker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="2040">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="10" />
-          <folding>
-            <element signature="e#31#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GenAlg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1284" max-vertical-offset="1904">
-          <caret line="99" column="57" selection-start-line="99" selection-start-column="57" selection-end-line="99" selection-end-column="57" />
-          <folding>
-            <element signature="e#31#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TEST-line-follower/RunTrial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1615">
-          <caret line="34" column="45" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,30 +690,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vrep.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37777779" vertical-offset="255" max-vertical-offset="20587">
+          <caret line="29" column="55" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Picker/ParetoPicker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39657855" vertical-offset="0" max-vertical-offset="2057">
+          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="16" selection-end-column="35" />
+          <folding>
+            <element signature="e#31#49#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Picker/SinglePicker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37013996" vertical-offset="0" max-vertical-offset="714">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Builder/Builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.022580646" vertical-offset="632" max-vertical-offset="1870">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.47589424" vertical-offset="0" max-vertical-offset="1887">
+          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tester/CurveFitTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37013996" vertical-offset="0" max-vertical-offset="1071">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="15" selection-end-column="38" />
+          <folding>
+            <element signature="e#31#49#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TEST-line-follower/RunTrial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1615">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tester/LineFolTester.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1817" max-vertical-offset="3145">
-          <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.55520993" vertical-offset="0" max-vertical-offset="3162">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
           <folding>
-            <element signature="e#31#41#0" expanded="true" />
+            <element signature="e#31#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LineFolGA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.119929455" vertical-offset="0" max-vertical-offset="918">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="1037">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
           <folding>
             <element signature="e#31#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GenAlg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5960912" vertical-offset="1011" max-vertical-offset="2635">
+          <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
+          <folding>
+            <element signature="e#31#49#0" expanded="true" />
           </folding>
         </state>
       </provider>

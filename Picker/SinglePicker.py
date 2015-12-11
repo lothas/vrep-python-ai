@@ -12,6 +12,7 @@ class SinglePicker():
         self.n_top = n  # number of top genomes to select from population
         # (can be passed as a % of the population, in which case it will
         #  select the floor(%*pop_size) top genomes.
+        self.name = "single picker"
 
     def pick_pop(self, n_genomes, fit):
         # Create a structured array

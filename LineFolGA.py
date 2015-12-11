@@ -5,6 +5,7 @@ from Picker import ParetoPicker
 # from Picker import SinglePicker
 from Builder import Builder
 from GenAlg import GenAlg
+import datetime
 
 # ######################### SINE GEN. ALG. SCRIPT ######################### #
 # Optimize the control gains for a simple 2-wheeled robot with 3 light
@@ -23,27 +24,33 @@ from GenAlg import GenAlg
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 60
+    n_genomes = 25
     n_generations = 100
 
-    base_val = 2
-    sens_val = 4
+    base_val = 4
+    sens_val = 8
     gen_max = [base_val, sens_val, sens_val, sens_val,
                base_val, sens_val, sens_val, sens_val]
     gen_min = [-val for val in gen_max]
 
     # Generation build plan
     top_n = 0.2
-    build_plan = [[top_n],
-                  [top_n, 'randn_mut'],
-                  [1-2*top_n, 'rand_pair_pick', 'n_point_cross', 'randn_mut']]
+    build_plan = [[top_n, 'randn_mut'],
+                  [1-top_n, 'rand_pair_pick', 'n_point_cross', 'randn_mut']]
 
     # Create objects
     tester = LineFolTester.LineFolTester(5, 'LineFolR')
     picker = ParetoPicker.ParetoPicker(top_n)
     builder = Builder.Builder(gen_min, gen_max, n_genomes, build_plan)
 
-    GA = GenAlg(n_genomes, n_generations, tester, picker, builder)
+    filename = "LineFolGA-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
+    GA = GenAlg(n_genomes, n_generations, tester, picker, builder, filename=filename)
+
+    # Load data from save file
+    GA = GA.load("LineFolGA-12_11-09_34.txt")
+
     GA = GA.run()
+    print GA.Fits
+    print GA.Gens
 
     tester.disconnect()

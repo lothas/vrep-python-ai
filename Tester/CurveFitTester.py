@@ -13,6 +13,7 @@ import time
 # and the function encoded by the genome.
 class CurveFitTester():
     def __init__(self, data_x, data_y):
+        self.name = "curve-fit tester"
         self.data_x = data_x
         self.data_y = data_y
 
