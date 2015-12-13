@@ -16,6 +16,7 @@ class Builder():
         self.gen_max = gen_max          # Max. values for genome
         self.pop_size = pop_size        # Population size to be created
         self.build_plan = build_plan    # Instructions on how to build the new population
+        self.name = str(build_plan) + " build plan"
 
         self.mut_strength = 0.03        # Percentage of max-min variation added as mutation
 

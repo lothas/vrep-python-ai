@@ -2,6 +2,8 @@ __author__ = 'Jonathan Spitz'
 
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
+import json
 
 # ############################## GENETIC ALGORITHM CLASS ############################## #
 # A GenAlg object runs a genetic algorithm optimization for a given problem.
@@ -19,7 +21,7 @@ import matplotlib.pyplot as plt
 # endCond is passed, GenAlg will run until the max number of generations is reached.
 class GenAlg:
     # GenAlg constructor
-    def __init__(self, n_genomes, n_generations, tester, picker, builder, init_pop=0, end_cond=0):
+    def __init__(self, n_genomes, n_generations, tester, picker, builder, init_pop=0, end_cond=0, filename=[]):
         self.verbose = True  # Set to true to print out intermediate optimization results
 
         self.nGenomes = n_genomes
@@ -53,18 +55,42 @@ class GenAlg:
         self.fit_max = []           # Stores the max fitness values
         self.fit_mean = []          # Stores the mean fitness values
 
+        # Data saving info
+        if not filename:
+            self.save_filename = "GA-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
+        else:
+            self.save_filename = filename
+        self.description = "Results for GA with " + self.Tester.name + ", " + self.Picker.name + " and " \
+                           + self.Builder.name + ".\n" \
+                           + "Ran a population of " + str(self.nGenomes) + " over {0} generations on " \
+                           + datetime.datetime.now().strftime("%Y-%m-%d starting at %H:%M")
+
         self.curGen = 0
     # End GenAlg constructor
 
+    def load(self, filename):
+        # Load data from the save file provided
+        with open(filename, 'r') as f:
+            data = json.load(f)
+            print bcolors.OKGREEN + "Loaded data from " + filename + ":" + bcolors.ENDC
+            print bcolors.OKBLUE + data[0] + bcolors.ENDC + "\n"
+            self.Gens = [data[1][-1]]
+        return self
+
     def run(self):
         if self.verbose:
-            print "Running Genetic Algorithm..."
+            print bcolors.HEADER + bcolors.BOLD + "Running Genetic Algorithm..." + bcolors.ENDC
+
+        # Open save file with 'w' to clean it up
+        with open(self.save_filename, 'w') as f:
+            f.close()
+
 
         # While the end-condition or the max. number of generations hasn't been reached do:
         while self.curGen < self.nGenerations and not self.endCond(self.Fits):
             if self.verbose:
-                print "Running generation " + str(self.curGen) + \
-                    " out of " + str(self.nGenerations)
+                print bcolors.OKGREEN + "Running generation " + str(self.curGen) + \
+                    " out of " + str(self.nGenerations) + bcolors.ENDC
                 # TODO: calculate a run-time estimate for each generation
 
             # Calculate the current population's fitness
@@ -79,12 +105,18 @@ class GenAlg:
 
             if self.verbose:
                 # Print average and max fitness values
-                print "Top fitness results: "+str(fit_max)
+                print bcolors.OKBLUE + "Top fitness results: "+str(fit_max)
                 print "Avg. fitness results: "+str(fit_mean)
-                print ""
+                print "" + bcolors.ENDC
+
+            # Save results
+            with open(self.save_filename, 'w') as f:
+                output = [self.description.format(self.curGen+1), self.Gens, self.Fits]
+                json.dump(output, f)
+                f.close()
 
             # Select the top population for reproduction
-            top_pop = self.Picker.pick_pop(self.Gens[self.curGen], fitness)
+            top_pop = self.Picker.pick_pop(self.nGenomes, fitness)
 
             # Build the next generation
             new_pop, parents = self.Builder.build_pop(self.Gens[self.curGen], top_pop)
@@ -100,7 +132,19 @@ class GenAlg:
             plt.plot(range(self.nGenerations), self.fit_mean)
             plt.show()
 
+        return self
+
     @staticmethod
     def false_cond():
         return 0
 
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'

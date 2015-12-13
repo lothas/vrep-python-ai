@@ -16,7 +16,7 @@ from GenAlg import GenAlg
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 300
+    n_genomes = 500
     n_generations = 20
 
     gen_min = [0, 0, 0]
