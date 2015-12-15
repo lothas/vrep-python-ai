@@ -1,0 +1,94 @@
+getSignals=function()
+	Par = {}
+	for i=1,nMotors do
+		Par[i] = {}
+		for j=1,nParameters+1 do
+			-- Each signal is called by robot name + motor + par
+			-- for example: WalkingBiped#1_1_2
+			Par[i][j] = simGetFloatSignal(Name.."_"..i.."_"..j)
+			if not Par[i][j] then
+				Par[i][j] = 0
+			end
+		end
+	end
+	return Par
+end
+
+threadFunction=function()
+
+	while simGetSimulationState()~=sim_simulation_advancing_abouttostop do
+		simulationTime=simGetSimulationTime()
+		dt=simulationTime-previousSimulationTime
+		previousSimulationTime=simulationTime
+		state=simGetSimulationState()
+
+		
+		-- T = switch*A
+		for i=1,nMotors do
+			
+			wt = par[i][1]
+			phiStart = par[i][2]
+			phiEnd = par[i][3]
+			Amplitude = par[i][4]
+			
+			if i==1 then joint='Hip'
+			else if i==2 then joint='foot1'
+			else joint='foot2'
+			end
+			
+			if (wt-floor(wt))>=phiStart and (wt-floor(wt))<phiEnd then
+				simSetJointForce(joint,Amplitude)
+				simSetJointTargetVelocity(joint,20000)
+			else
+				simSetJointForce(joint,0)
+				simSetJointTargetVelocity(joint,0)
+			end
+			
+		end
+		
+		-- Update the output signal
+		rel_position=simGetObjectPosition(Object,line)
+		simSetFloatSignal(Name..'_1',simulationTime)
+		simSetFloatSignal(Name..'_2',rel_position[1])
+		simSetFloatSignal(Name..'_3',rel_position[2])
+
+	end
+
+
+
+
+
+end
+
+
+-- Put some initialization code here:
+simSetThreadSwitchTiming(200) -- Default timing for automatic thread switching
+
+nMotors = 3
+nParameters =4
+
+-- Get the robot's name and components
+--jointHandles={-1,-1,-1} not neccessary 
+
+-- Get the robot's name and components
+Script = simGetScriptHandle()
+Object = simGetObjectAssociatedWithScript(Script)
+Name = simGetObjectName(Object)
+
+Hip=simGetObjectHandle('Hip')
+foot1=simGetObjectHandle('foot1')
+foot2=simGetObjectHandle('foot2')
+
+previousSimulationTime=simGetSimulationTime()
+
+-- Get parameters by robot name:
+Par = getSignals()
+
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+	simAddStatusbarMessage('Lua runtime error: '..err)
+end
+
+-- Put some clean-up code here:
+end

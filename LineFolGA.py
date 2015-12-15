@@ -47,10 +47,10 @@ if __name__ == '__main__':
     GA = GenAlg(n_genomes, n_generations, tester, picker, builder, filename=filename)
 
     # Load data from save file
-    GA = GA.load("LineFolGA-12_11-09_34.txt")
+    # GA = GA.load("LineFolGA-12_11-09_34.txt")
 
     GA = GA.run()
-    print GA.Fits
-    print GA.Gens
+    print(GA.Fits)
+    print(GA.Gens)
 
     tester.disconnect()

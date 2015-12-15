@@ -88,7 +88,7 @@ class LineFolTester():
                     res = vrep.simxSetFloatSignal(self.clientID, signal_name, par[j][k],
                                                   vrep.simx_opmode_oneshot)
                     if res > 1:
-                        print 'Error setting signal '+signal_name+': '+str(res)
+                        print('Error setting signal '+signal_name+': '+str(res))
 
         # Start running simulation
         # print 'Running trial'
@@ -178,4 +178,4 @@ if __name__ == '__main__':
                             [2, 6, -6, -6, 2, -6, -6, 6],
                             [10, 0, -0, -0, 6, -0, -0, 0],
                             [2, 0,  0, -0, 3, -0, 0, 0]])
-    print res
+    print(res)
