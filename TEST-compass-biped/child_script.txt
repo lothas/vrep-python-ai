@@ -26,17 +26,27 @@ threadFunction=function()
 		-- T = switch*A
 		for i=1,nMotors do
 			
-			wt = par[i][1]
-			phiStart = par[i][2]
-			phiEnd = par[i][3]
-			Amplitude = par[i][4]
+			--simAddStatusbarMessage('i= '..i)
+			w = Par[i][1]
+			phiStart = Par[i][2]
+			phiEnd = Par[i][3]
+			Amplitude = Par[i][4]
 			
-			if i==1 then joint='Hip'
-			else if i==2 then joint='foot1'
-			else joint='foot2'
+			wt = w*simulationTime
+			--simAddStatusbarMessage('wt= '..wt)
+
+			if i==1 then 
+				joint=Hip
 			end
+			if i==2 then 
+				joint=foot1
+			end
+			if i==3 then 
+				joint=foot2
+			end
+			--simAddStatusbarMessage('The joint is= '..joint)
 			
-			if (wt-floor(wt))>=phiStart and (wt-floor(wt))<phiEnd then
+			if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<phiEnd then
 				simSetJointForce(joint,Amplitude)
 				simSetJointTargetVelocity(joint,20000)
 			else
@@ -47,18 +57,16 @@ threadFunction=function()
 		end
 		
 		-- Update the output signal
-		rel_position=simGetObjectPosition(Object,line)
-		simSetFloatSignal(Name..'_1',simulationTime)
-		simSetFloatSignal(Name..'_2',rel_position[1])
-		simSetFloatSignal(Name..'_3',rel_position[2])
+		--rel_position=simGetObjectPosition(Object,line)
+		--simSetFloatSignal(Name..'_1',simulationTime)
+		--simSetFloatSignal(Name..'_2',rel_position[1])
+		--simSetFloatSignal(Name..'_3',rel_position[2])
 
+	    end
 	end
 
 
 
-
-
-end
 
 
 -- Put some initialization code here:
@@ -66,9 +74,6 @@ simSetThreadSwitchTiming(200) -- Default timing for automatic thread switching
 
 nMotors = 3
 nParameters =4
-
--- Get the robot's name and components
---jointHandles={-1,-1,-1} not neccessary 
 
 -- Get the robot's name and components
 Script = simGetScriptHandle()
@@ -91,4 +96,3 @@ if not res then
 end
 
 -- Put some clean-up code here:
-end

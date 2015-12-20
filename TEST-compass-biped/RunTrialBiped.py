@@ -34,9 +34,11 @@ time.sleep(0.2)
 
 # Initialize simulation parameters
 RobotNames = ["Leg1", "Leg1#0", "Leg1#1", "Leg1#2", "Leg1#3"]
-Params = [[[0.1, 0.2, 0.3, 0]],
-          [[0.1, 0.2, 0.3, 0]],
-          [[0.1, 0.2, 0.3, 0]]]
+Params = [[[100, 0.3, 0.6, 50], [100, 0.2, 0.6, 50], [100, 0.2, 0.6, 50]],
+          [[1000, 0.3, 0.6, 50], [1000, 0.2, 0.6, 50], [1000, 0.2, 0.6, 50]],
+          [[10000, 0.3, 0.6, 50], [10000, 0.2, 0.6, 50], [10000, 0.2, 0.6, 50]],
+          [[100000, 0.3, 0.6, 50], [100000, 0.2, 0.6, 50], [100000, 0.2, 0.6, 50]],
+          [[1, 0.2, 0.6, 5], [1, 0.2, 0.6, 5], [1, 0.2, 0.6, 5]]]
 for i in range(len(RobotNames)):
     rN = RobotNames[i]
     Par = Params[i]
@@ -49,6 +51,7 @@ for i in range(len(RobotNames)):
                                             vrep.simx_opmode_oneshot_wait)
 
 rbt_names = ["Leg1", "Leg1#0", "Leg1#1", "Leg1#2", "Leg1#3"]
+init_pos = []
 rbts = []
 for rbt_name in rbt_names:
     res, rbt_tmp = vrep.simxGetObjectHandle(clientID, rbt_name, vrep.simx_opmode_oneshot_wait)
