@@ -1,4 +1,4 @@
-getSignals=function()
+getParameters=function()
 	Par = {}
 	for i=1,nMotors do
 		Par[i] = {}
@@ -26,6 +26,8 @@ threadFunction=function()
 		-- T = switch*A
 		for i=1,nMotors do
 			
+
+			
 			--simAddStatusbarMessage('i= '..i)
 			w = Par[i][1]
 			phiStart = Par[i][2]
@@ -48,7 +50,7 @@ threadFunction=function()
 			
 			if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<phiEnd then
 				simSetJointForce(joint,Amplitude)
-				simSetJointTargetVelocity(joint,20000)
+				simSetJointTargetVelocity(joint,500)
 			else
 				simSetJointForce(joint,0)
 				simSetJointTargetVelocity(joint,0)
@@ -57,10 +59,11 @@ threadFunction=function()
 		end
 		
 		-- Update the output signal
-		--rel_position=simGetObjectPosition(Object,line)
-		--simSetFloatSignal(Name..'_1',simulationTime)
-		--simSetFloatSignal(Name..'_2',rel_position[1])
-		--simSetFloatSignal(Name..'_3',rel_position[2])
+		rel_position=simGetObjectPosition(Object,line)
+		simSetFloatSignal(Name..'_1',simulationTime)
+		simSetFloatSignal(Name..'_2',rel_position[1])
+		simSetFloatSignal(Name..'_3',rel_position[2])
+		simSetFloatSignal(Name..'_4',rel_position[3])
 
 	    end
 	end
@@ -70,7 +73,7 @@ threadFunction=function()
 
 
 -- Put some initialization code here:
-simSetThreadSwitchTiming(200) -- Default timing for automatic thread switching
+simSetThreadSwitchTiming(20) -- Default timing for automatic thread switching
 
 nMotors = 3
 nParameters =4
@@ -84,10 +87,20 @@ Hip=simGetObjectHandle('Hip')
 foot1=simGetObjectHandle('foot1')
 foot2=simGetObjectHandle('foot2')
 
+-- Get the proper line handle
+numPos = string.find(Name,"#")
+if not numPos then
+	robotNumber = ""
+else
+	robotNumber = string.sub(Name,numPos)
+end
+line = simGetObjectHandle("StraightLine"..robotNumber)
+
 previousSimulationTime=simGetSimulationTime()
 
 -- Get parameters by robot name:
-Par = getSignals()
+Par = getParameters()
+--Par={{10, 0.1, 0.8, 55}, {10, 0.1, 0.8, 55}, {10, 0.1, 0.8, 55}}
 
 -- Here we execute the regular thread code:
 res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)

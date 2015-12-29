@@ -1,4 +1,5 @@
-__author__ = 'Jonathan Spitz'
+__author__ = 'Rea Yakar'
+# based on the code of Jonathan Spitz
 
 import sys
 import os
@@ -11,15 +12,16 @@ import time
 import numpy as np
 
 
-# ############################ LINE FOLLOWER TESTER CLASS ############################ #
-# A Line follower tester object tests the given population of controller gains on
+# ############################ Biped Walker TESTER CLASS ############################ #
+# A Biped Walker tester object tests the given population of CPG controller parameters on
 # V-REP simulated robots and returns the fitness values for each genome.
-# The genomes encode controller gains for base speed and sensory feedback.
+# The genomes encode controller parameters for frequency and phase of operation of each motor.
 # The fitness function used measures the distance covered by the robot in a set
 # trial time.
-class LineFolTester():
+
+class WalkerTester():
     def __init__(self, n_robots, base_name):
-        self.name = "line follower tester"
+        self.name = "walker tester"
         self.n_robots = n_robots
         self.base_name = base_name
 
@@ -79,16 +81,16 @@ class LineFolTester():
     def run_trial(self, genomes):
         # Set the signals for each robot
         for genome, robot in zip(genomes, self.robot_names):
-            par = [genome[:4], genome[4:]]
+            par = [genome[:4], genome[4:8], genome[8:]]
             for j in range(len(par)):
                 # For each motor
                 for k in range(len(par[j])):
-                    # For each sensor (+ base value)
-                    signal_name = robot+"_"+str(j+1)+"_"+str(k+1)
-                    res = vrep.simxSetFloatSignal(self.clientID, signal_name, par[j][k],
+                    # For each joint (+ base value)
+                    joint_name = robot+"_"+str(j+1)+"_"+str(k+1)
+                    res = vrep.simxSetFloatSignal(self.clientID, joint_name, par[j][k],
                                                   vrep.simx_opmode_oneshot)
                     if res > 1:
-                        print 'Error setting signal '+signal_name+': '+str(res)
+                        print 'Error setting signal '+joint_name+': '+str(res)
 
         # Start running simulation
         # print 'Running trial'
@@ -114,12 +116,16 @@ class LineFolTester():
 
                 # Get info from robot
                 for i in range(self.n_robots):
+                    # get simulation time
                     res1, in1 = vrep.simxGetFloatSignal(self.clientID,
                                                         self.robot_names[i]+'_1', vrep.simx_opmode_buffer)
+                    # get rel position 1
                     res2, in2 = vrep.simxGetFloatSignal(self.clientID,
                                                         self.robot_names[i]+'_2', vrep.simx_opmode_buffer)
+                    # get rel position 2
                     res3, in3 = vrep.simxGetFloatSignal(self.clientID,
                                                         self.robot_names[i]+'_3', vrep.simx_opmode_buffer)
+
                     if res1 == 0 and res2 == 0 and res3 == 0:
                         sim_time[i].append(in1)
                         robot_x[i].append(in2)
@@ -136,7 +142,7 @@ class LineFolTester():
                         if new_data[i] == 1:
                             fit_y[i] += abs(robot_y[i][-1])*(sim_time[i][-1]-sim_time[i][-2])
                             new_data[i] = 0
-                            if sim_time[i][-1] > 3:  # time limit for the simulation
+                            if sim_time[i][-1] > 5:  # time limit for the simulation
                                 go_loop = False
                                 break
 
@@ -173,9 +179,10 @@ class LineFolTester():
 
 
 if __name__ == '__main__':
-    tester = LineFolTester(4, 'LineFolR')
-    res = tester.run_trial([[6, 6, -6, -6, 6, -6, -6, 6],
-                            [2, 6, -6, -6, 2, -6, -6, 6],
-                            [10, 0, -0, -0, 6, -0, -0, 0],
-                            [2, 0,  0, -0, 3, -0, 0, 0]])
+    tester = WalkerTester(5, 'Leg1')
+    res = tester.run_trial([[[100, 0.3, 0.6, 50], [100, 0.2, 0.6, 50], [100, 0.2, 0.6, 50]],
+          [[10, 0.3, 0.6, 50], [10, 0.2, 0.6, 50], [10, 0.2, 0.6, 50]],
+          [[100, 0.3, 0.6, 50], [100, 0.2, 0.6, 50], [100, 0.2, 0.6, 50]],
+          [[1000, 0.3, 0.6, 50], [1000, 0.2, 0.6, 50], [1000, 0.2, 0.6, 50]],
+          [[1, 0.2, 0.6, 5], [1, 0.2, 0.6, 5], [1, 0.2, 0.6, 5]]])
     print res
