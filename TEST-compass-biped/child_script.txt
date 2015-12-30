@@ -48,7 +48,7 @@ threadFunction=function()
 			end
 			--simAddStatusbarMessage('The joint is= '..joint)
 			
-			if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<phiEnd then
+			if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
 				simSetJointForce(joint,Amplitude)
 				simSetJointTargetVelocity(joint,500)
 			else

@@ -24,10 +24,12 @@
       <file leaf-file-name="GenAlg.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GenAlg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.931034">
-              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="84" column="48" selection-start-line="84" selection-start-column="48" selection-end-line="84" selection-end-column="48" />
               <folding>
                 <element signature="e#31#49#0" expanded="true" />
+                <element signature="e#1185#2988#0" expanded="false" />
+                <element signature="e#3057#3378#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -36,10 +38,12 @@
       <file leaf-file-name="WalkerTester.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tester/WalkerTester.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-27.137932">
-              <caret line="144" column="50" selection-start-line="144" selection-start-column="50" selection-end-line="144" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="154" column="50" selection-start-line="154" selection-start-column="50" selection-end-line="154" selection-end-column="50" />
               <folding>
                 <element signature="e#64#74#0" expanded="true" />
+                <element signature="e#935#3018#0" expanded="false" />
+                <element signature="e#3058#3349#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -48,8 +52,8 @@
       <file leaf-file-name="WalkerGA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WalkerGA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.81859756">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.3262195">
+              <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
               <folding>
                 <element signature="e#64#95#0" expanded="true" />
               </folding>
@@ -112,14 +116,14 @@
         <option value="$PROJECT_DIR$/Picker/SinglePicker.py" />
         <option value="$PROJECT_DIR$/Builder/Builder.py" />
         <option value="$PROJECT_DIR$/Tester/CurveFitTester.py" />
-        <option value="$PROJECT_DIR$/GenAlg.py" />
         <option value="$PROJECT_DIR$/vrep.py" />
         <option value="$PROJECT_DIR$/Tester/LineFolTester.py" />
         <option value="$PROJECT_DIR$/LineFolGA.py" />
         <option value="$PROJECT_DIR$/TEST-compass-biped/RunTrial.py" />
         <option value="$PROJECT_DIR$/TEST-compass-biped/RunTrialBiped.py" />
-        <option value="$PROJECT_DIR$/Tester/WalkerTester.py" />
+        <option value="$PROJECT_DIR$/GenAlg.py" />
         <option value="$PROJECT_DIR$/WalkerGA.py" />
+        <option value="$PROJECT_DIR$/Tester/WalkerTester.py" />
       </list>
     </option>
   </component>
@@ -507,14 +511,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15877287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3069909" sideWeight="0.5043057" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3069909" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3069909" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -562,7 +566,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="57" />
+      <option name="time" value="59" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -571,6 +575,14 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Tester/LineFolTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="175" column="26" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TEST-compass-biped/RunTrialBiped.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -585,6 +597,8 @@
           <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -594,7 +608,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#31#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -623,6 +637,8 @@
           <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -632,7 +648,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#31#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -675,6 +691,8 @@
           <caret line="74" column="87" selection-start-line="74" selection-start-column="87" selection-end-line="74" selection-end-column="87" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -684,7 +702,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#31#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -712,6 +730,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -721,7 +741,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#31#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -749,6 +769,8 @@
           <caret line="62" column="91" selection-start-line="62" selection-start-column="91" selection-end-line="62" selection-end-column="91" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,7 +780,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#31#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -800,6 +822,8 @@
           <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -845,6 +869,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -856,13 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Picker/Picker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SineGA.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -870,24 +889,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Picker/ParetoPicker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39657855">
-          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="16" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Picker/SinglePicker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37013996">
           <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Builder/Builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47589424">
-          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -913,13 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tester/Tester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TEST-line-follower/RunTrial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.23323171">
@@ -932,24 +930,22 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="28" />
           <folding>
-            <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#31#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TEST-compass-biped/RunTrialBiped.py">
+    <entry file="file://$PROJECT_DIR$/Picker/Picker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
-          <folding />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tester/LineFolTester.py">
+    <entry file="file://$PROJECT_DIR$/Picker/ParetoPicker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="26" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="26" />
-          <folding />
+        <state vertical-scroll-proportion="-0.010427529">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -963,30 +959,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tester/LineFolTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="175" column="26" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tester/Tester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TEST-compass-biped/RunTrialBiped.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Builder/Builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GenAlg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.931034">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="84" column="48" selection-start-line="84" selection-start-column="48" selection-end-line="84" selection-end-column="48" />
           <folding>
             <element signature="e#31#49#0" expanded="true" />
+            <element signature="e#1185#2988#0" expanded="false" />
+            <element signature="e#3057#3378#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tester/WalkerTester.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.137932">
-          <caret line="144" column="50" selection-start-line="144" selection-start-column="50" selection-end-line="144" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="154" column="50" selection-start-line="154" selection-start-column="50" selection-end-line="154" selection-end-column="50" />
           <folding>
             <element signature="e#64#74#0" expanded="true" />
+            <element signature="e#935#3018#0" expanded="false" />
+            <element signature="e#3058#3349#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WalkerGA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81859756">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3262195">
+          <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
           <folding>
             <element signature="e#64#95#0" expanded="true" />
           </folding>

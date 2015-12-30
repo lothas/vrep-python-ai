@@ -67,6 +67,7 @@ class WalkerTester():
             self.robot_pos0.append(pos)
             # print pos
 
+
     def test_pop(self, pop):
         pop_fitness = []
         n_genomes = len(pop)
@@ -78,10 +79,14 @@ class WalkerTester():
 
         return pop_fitness
 
+
     def run_trial(self, genomes):
-        # Set the signals for each robot
+        # Set the parameters for each robot
         for genome, robot in zip(genomes, self.robot_names):
             par = [genome[:4], genome[4:8], genome[8:]]
+            par[1][0] = genome[0]
+            par[2][0] = genome[0]
+            # TODO : this is a temp. fix, change the genome so that will be only one omega
             for j in range(len(par)):
                 # For each motor
                 for k in range(len(par[j])):
@@ -100,6 +105,7 @@ class WalkerTester():
         sim_time = [[] for i in range(self.n_robots)]
         robot_x = [[] for i in range(self.n_robots)]
         robot_y = [[] for i in range(self.n_robots)]
+        robot_z = [[] for i in range(self.n_robots)]
         init_pos = [[] for i in range(self.n_robots)]
         fit_y = [0 for i in range(self.n_robots)]
 
@@ -125,53 +131,44 @@ class WalkerTester():
                     # get rel position 2
                     res3, in3 = vrep.simxGetFloatSignal(self.clientID,
                                                         self.robot_names[i]+'_3', vrep.simx_opmode_buffer)
+                    # get rel position 3
+                    res4, in4 = vrep.simxGetFloatSignal(self.clientID,
+                                                        self.robot_names[i]+'_4', vrep.simx_opmode_buffer)
 
                     if res1 == 0 and res2 == 0 and res3 == 0:
                         sim_time[i].append(in1)
                         robot_x[i].append(in2)
                         robot_y[i].append(in3)
+                        robot_z[i].append(in4)
                         new_data[i] = 1  # new data arrived
 
                 if once:
                     if sum(new_data) == self.n_robots:
                         for i in range(self.n_robots):
-                            init_pos[i] = [robot_x[i][-1], robot_y[i][-1]]
+                            init_pos[i] = [robot_x[i][-1], robot_y[i][-1],robot_z[i][-1]]
                         once = False
                 else:
                     for i in range(self.n_robots):
                         if new_data[i] == 1:
                             fit_y[i] += abs(robot_y[i][-1])*(sim_time[i][-1]-sim_time[i][-2])
                             new_data[i] = 0
-                            if sim_time[i][-1] > 5:  # time limit for the simulation
+                            if sim_time[i][-1] > 3:  # time limit for the simulation
                                 go_loop = False
                                 break
 
-        # # Pause the simulation
-        # vrep.simxPauseSimulation(self.clientID, vrep.simx_opmode_oneshot)
-        # time.sleep(0.15)
-        #
-        # trial_fitness = []
-        # # Get the trial results for each robot
-        # for i in range(len(self.robot_handles)):
-        #     res, pos = vrep.simxGetObjectPosition(self.clientID, self.robot_handles[i], -1, vrep.simx_opmode_buffer)
-        #     # print pos_tmp
-        #
-        #     delta_x = pos[0] - self.robot_pos0[i][0]
-        #     delta_y = pos[1] - self.robot_pos0[i][1]
-        #
-        #     # trial_fitness.append(delta_x)
-        #     trial_fitness.append([delta_x, 1./(1.+20*abs(delta_y))])
         trial_fitness = []
         for i in range(self.n_robots):
             x_fit = robot_x[i][-1] - init_pos[i][0]
             y_fit = 1/(1+20*fit_y[i])
-            trial_fitness.append([x_fit, y_fit])
+            z_fit = robot_z[i][-1] - init_pos[i][2]
+            trial_fitness.append([x_fit, y_fit, z_fit])
 
         # Stop and reset the simulation
         vrep.simxStopSimulation(self.clientID, vrep.simx_opmode_oneshot)
         time.sleep(0.35)
 
         return trial_fitness
+
 
     def disconnect(self):
         time.sleep(0.1)

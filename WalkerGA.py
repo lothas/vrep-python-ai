@@ -20,19 +20,17 @@ import datetime
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 10  # was 25 before...
-    n_generations = 5
+    n_genomes = 300
+    n_generations = 2
 
-    omega_val = 10
-    phi_start_val = 0.8
-    phi_end_val = 0.9  # phi_end can't be smaller than phi_start!
-    amplitude_val = 20
-    gen_max = [omega_val, phi_start_val, phi_end_val, amplitude_val,
-               omega_val, phi_start_val, phi_end_val, amplitude_val,
-               omega_val, phi_start_val, phi_end_val, amplitude_val]
-    gen_min = [omega_val-0.01, 0, 0.1, -amplitude_val,
-               omega_val-0.01, 0, 0.1, -amplitude_val,
-               omega_val-0.01, 0, 0.1, -amplitude_val]
+    gen_max = [100, 0.9, 0.09, 40,
+               100, 0.9, 0.09, 40,
+               100, 0.9, 0.09, 40]
+    gen_min = [0.01, 0, 0.01, -40,
+               0.01, 0, 0.01, -40,
+               0.01, 0, 0.01, -40]
+        # TODO: 1) make sure that the omega is the same for each motor
+        # TODO: 2) make sure that phi_end can't be smaller than phi_start!
 
     # Generation build plan
     top_n = 0.2
@@ -48,7 +46,7 @@ if __name__ == '__main__':
     GA = GenAlg(n_genomes, n_generations, tester, picker, builder, filename=filename)
 
     # Load data from save file
-    # GA = GA.load("LineFolGA-12_11-09_34.txt")
+    GA = GA.load("WalkerGA-12_30-15_29.txt")
 
     GA = GA.run()
     print(GA.Fits)
