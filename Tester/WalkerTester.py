@@ -160,7 +160,7 @@ class WalkerTester():
         for i in range(self.n_robots):
             x_fit = robot_x[i][-1] - init_pos[i][0]
             y_fit = 1/(1+20*fit_y[i])
-            z_fit = robot_z[i][-1] - init_pos[i][2]
+            z_fit = robot_z[i][-1]
             trial_fitness.append([x_fit, y_fit, z_fit])
 
         # Stop and reset the simulation

@@ -60,8 +60,11 @@ threadFunction=function()
 		
 		-- Update the output signal
 		rel_position=simGetObjectPosition(Object,line)
+		rel_position1=simGetObjectPosition(Shoe1,line)
+		rel_position2=simGetObjectPosition(Shoe2,line)
+		avg_pos_shoes=((rel_position1[1]+rel_position2[1])*0.5)
 		simSetFloatSignal(Name..'_1',simulationTime)
-		simSetFloatSignal(Name..'_2',rel_position[1])
+		simSetFloatSignal(Name..'_2',avg_pos_shoes)
 		simSetFloatSignal(Name..'_3',rel_position[2])
 		simSetFloatSignal(Name..'_4',rel_position[3])
 
@@ -86,6 +89,8 @@ Name = simGetObjectName(Object)
 Hip=simGetObjectHandle('Hip')
 foot1=simGetObjectHandle('foot1')
 foot2=simGetObjectHandle('foot2')
+Shoe1=simGetObjectHandle('Shoe1')
+Shoe2=simGetObjectHandle('Shoe2')
 
 -- Get the proper line handle
 numPos = string.find(Name,"#")
