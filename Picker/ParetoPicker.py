@@ -25,7 +25,17 @@ class ParetoPicker():
 
         fronts = ParetoPicker.pareto(fit, n_genomes)
 
+        # a list with fit_max inside (insure that the maximum fitness will always get picked
         short_list = []
+        short_list_temp = [np.argmax(fit, 0)]
+        for i in range(len(short_list_temp[0])):
+            short_list.append(short_list_temp[0][i])
+        # print short_list
+        
+        # separating the fit_max genes from 1st front:
+        fit_max_ind = np.argmax([fit[i] for i in fronts[0]], 0)  # finding the indices of fit_max in fronts[0]
+        fronts[0] = np.delete(fronts[0], fit_max_ind)  # removing fit_max elements from front[0]
+
         for f in fronts:
             for i in f:
                 short_list.append(i)

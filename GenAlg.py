@@ -22,7 +22,7 @@ import json
 # endCond is passed, GenAlg will run until the max number of generations is reached.
 class GenAlg:
     # GenAlg constructor
-    def __init__(self, n_genomes, n_generations, tester, picker, builder, init_pop=0, end_cond=0, filename=[]):
+    def __init__(self, n_genomes, n_generations, tester, picker, builder, genesNames, FitNames, init_pop=0, end_cond=0, filename=[]):
         self.verbose = True  # Set to true to print out intermediate optimization results
 
         self.nGenomes = n_genomes
@@ -32,6 +32,9 @@ class GenAlg:
         self.Tester = tester
         self.Picker = picker
         self.Builder = builder
+
+        self.genesNames = genesNames
+        self.FitNames = FitNames
 
         # Store the endCond function handle or use the built-in "0" function
         if hasattr(end_cond, '__call__'):
@@ -100,6 +103,7 @@ class GenAlg:
 
             fit_array = np.array(fitness)
             fit_max = np.max(fit_array, 0)
+            fit_max_ind = np.argmax(fit_array, 0)
             fit_mean = np.mean(fit_array, 0)
             self.fit_max.append(fit_max.tolist())
             self.fit_mean.append(fit_mean.tolist())
@@ -119,21 +123,20 @@ class GenAlg:
             # Select the top population for reproduction
             top_pop = self.Picker.pick_pop(self.nGenomes, fitness)
 
-            # TODO: change the code so the generalisation of "GenAlg will not change
             # Rea's addition:
-            if True: #display data for biPed robot change for other models
-                genesNames = ["omega", "phi_start1", "phi_start2", "Amplitude",
-                              "phi_start1", "phi_start2", "Amplitude",
-                              "phi_start1", "phi_start2", "Amplitude",
-                              "x_fitness", "y_fitness", "z_fitness"]
+            if True:  #display data for biPed robot change for other models
+                BestNames = self.genesNames + self.FitNames
                 bestFitnessOfBestGenes = [fitness[i] for i in top_pop]
                 currentBestGenes = [self.Gens[self.curGen][i] for i in top_pop]
                 currentBestGenes1 = np.concatenate((currentBestGenes, bestFitnessOfBestGenes), axis=1)
                 currentBestGenesRounded = np.around(currentBestGenes1, decimals=4) #round the array for aesthetics
-                row_format = "{:>15}" * (len(genesNames) + 1)
-                print row_format.format("", *genesNames)
+                row_format = "{:>15}" * (len(BestNames) + 1)
+                print row_format.format("", *BestNames)
                 for Gene, row in zip(np.arange(len(currentBestGenesRounded))+1, currentBestGenesRounded):
-                   print row_format.format(str(Gene)+")", *row)
+                    if top_pop[Gene-1] in fit_max_ind:
+                        print bcolors.OKGREEN + str(row_format.format(str(Gene)+")", *row)) + bcolors.ENDC
+                    else:
+                        print row_format.format(str(Gene)+")", *row)
                 print "" + bcolors.ENDC
             ###############
 
@@ -150,18 +153,20 @@ class GenAlg:
 
             plt.figure(1)
             plt.plot(range(self.nGenerations), self.fit_max)
+            plt.title("Max fitness values")
             plt.xlabel('Generation number')
             plt.ylabel('Max fitness')
             plt.grid(True)
-            plt.legend(['x_fit', 'y_fit', 'z_fit'])
-            plt.show()
+            plt.legend(self.FitNames)
+
 
             plt.figure(2)
             plt.plot(range(self.nGenerations), self.fit_mean)
+            plt.title("Mean fitness values")
             plt.xlabel('Generation number')
             plt.ylabel('Mean fitness')
             plt.grid(True)
-            plt.legend(['x_Mean_Fit', 'y_Mean_Fit', 'z_Mean_Fit'])
+            plt.legend(self.FitNames)
             plt.show()
 
         return self

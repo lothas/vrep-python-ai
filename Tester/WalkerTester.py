@@ -3,6 +3,7 @@ __author__ = 'Rea Yakar'
 
 import sys
 import os
+import math
 # Get parent directory by joining this file's path [os.path.dirname(os.path.abspath(__file__))] with '..' [os.pardir]
 parentDir = os.path.abspath(os.path.dirname(os.path.abspath(__file__))+'\\'+os.pardir)
 sys.path.insert(0, parentDir)  # Add the parent directory where 'vrep' is located.
@@ -20,10 +21,12 @@ import numpy as np
 # trial time.
 
 class WalkerTester():
-    def __init__(self, n_robots, base_name):
+    def __init__(self, n_robots, simTimeLimit, base_name):
         self.name = "walker tester"
         self.n_robots = n_robots
         self.base_name = base_name
+
+        self.simTimeLimit = simTimeLimit
 
         self.robot_names = [self.base_name]
         for i in range(self.n_robots-1):
@@ -87,7 +90,7 @@ class WalkerTester():
             par = [[genome[0], genome[1], genome[2], genome[3]],
                    [genome[0], genome[4], genome[5], genome[6]],
                    [genome[0], genome[7], genome[8], genome[9]]]
-            # print par
+
             for j in range(len(par)):
                 # For each motor
                 for k in range(len(par[j])):
@@ -153,16 +156,25 @@ class WalkerTester():
                         if new_data[i] == 1:
                             fit_y[i] += abs(robot_y[i][-1])*(sim_time[i][-1]-sim_time[i][-2])
                             new_data[i] = 0
-                            if sim_time[i][-1] > 3:  # time limit for the simulation
+                            if sim_time[i][-1] > self.simTimeLimit:  # time limit for the simulation
                                 go_loop = False
                                 break
 
         trial_fitness = []
         for i in range(self.n_robots):
             x_fit = robot_x[i][-1] - init_pos[i][0]
-            y_fit = 1/(1+20*fit_y[i])
-            z_fit = 0.5*robot_z[i][-1]
-            trial_fitness.append([x_fit, y_fit, z_fit])
+            # y_fit = 1/(1+20*fit_y[i])
+            z_fit = robot_z[i][-1]
+            # control effort normalized by x distance
+            if x_fit > 0:
+                HipEffort = math.pow(genome[3], 2)
+                foot1Effort = math.pow(genome[6], 2)
+                foot2Effort = math.pow(genome[9], 2)
+                normConEffortFit_temp = (genome[2]*HipEffort + genome[5]*foot1Effort + genome[8]*foot2Effort)/x_fit
+                normConEffortFit = 1/normConEffortFit_temp
+            else:
+                normConEffortFit = 0
+            trial_fitness.append([x_fit, normConEffortFit, z_fit])
 
         # Stop and reset the simulation
         vrep.simxStopSimulation(self.clientID, vrep.simx_opmode_oneshot)
