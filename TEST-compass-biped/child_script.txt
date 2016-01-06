@@ -60,13 +60,15 @@ threadFunction=function()
 		
 		-- Update the output signal
 		rel_position=simGetObjectPosition(Object,line)
-		rel_position1=simGetObjectPosition(Shoe1,line)
-		rel_position2=simGetObjectPosition(Shoe2,line)
-		avg_pos_shoes=((rel_position1[1]+rel_position2[1])*0.5)
+		Shoe1_position=simGetObjectPosition(Shoe1,line)
+		Shoe2_position=simGetObjectPosition(Shoe2,line)
+		--HipJoint_position=simGetObjectPosition(HipPosition,line)
+		HipJoint_position=simGetObjectPosition(Hip,line)
+		avg_pos_shoes=((Shoe1_position[1]+Shoe2_position[1])*0.5)
 		simSetFloatSignal(Name..'_1',simulationTime)
 		simSetFloatSignal(Name..'_2',avg_pos_shoes)
 		simSetFloatSignal(Name..'_3',rel_position[2])
-		simSetFloatSignal(Name..'_4',rel_position[3])
+		simSetFloatSignal(Name..'_4',HipJoint_position[3])
 
 	    end
 	end
@@ -87,6 +89,7 @@ Object = simGetObjectAssociatedWithScript(Script)
 Name = simGetObjectName(Object)
 
 Hip=simGetObjectHandle('Hip')
+HipPosition=simGetObjectHandle('HipPosition1')
 foot1=simGetObjectHandle('foot1')
 foot2=simGetObjectHandle('foot2')
 Shoe1=simGetObjectHandle('Shoe1')

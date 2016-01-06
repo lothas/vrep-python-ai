@@ -20,17 +20,23 @@ import datetime
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 500
+    n_genomes = 10
     n_generations = 2
 
-    gen_max = [100, 0.9, 0.09, 40,
-               100, 0.9, 0.09, 40,
-               100, 0.9, 0.09, 40]
-    gen_min = [0.01, 0, 0.01, -40,
-               0.01, 0, 0.01, -40,
-               0.01, 0, 0.01, -40]
-        # TODO: 1) make sure that the omega is the same for each motor
-        # TODO: 2) make sure that phi_end can't be smaller than phi_start!
+    # genesNames = ["omega", "phi_start1", "phi_start2", "Amplitude",
+    #              "phi_start1", "phi_start2", "Amplitude",
+    #              "phi_start1", "phi_start2", "Amplitude",
+    #              "x_fitness", "y_fitness", "z_fitness"]
+
+    gen_max = [200, 0.9, 0.09, 60,
+               0.9, 0.09, 60,
+               0.9, 0.09, 60]
+    gen_min = [0.01, 0, 0.01, -60,
+               0, 0.01, -60,
+               0, 0.01, -60]
+        # TODO: 1) add to the fitness 'z'
+        # TODO: 2) disquelify the robot based on the 'y' value
+        # TODO: 3) add to the fitness energy calculation
 
     # Generation build plan
     top_n = 0.2
@@ -42,11 +48,11 @@ if __name__ == '__main__':
     picker = ParetoPicker.ParetoPicker(top_n)
     builder = Builder.Builder(gen_min, gen_max, n_genomes, build_plan)
 
-    filename = "WalkerGA-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
+    filename = "WalkerGA_upt3-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
     GA = GenAlg(n_genomes, n_generations, tester, picker, builder, filename=filename)
 
     # Load data from save file
-    GA = GA.load("WalkerGA-12_31-15_30.txt")
+    # GA = GA.load("WalkerGA_upt2-01_05-16_35.txt")
 
     GA = GA.run()
     print(GA.Fits)

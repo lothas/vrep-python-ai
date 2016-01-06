@@ -2,6 +2,7 @@ __author__ = 'Jonathan Spitz'
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import datetime
 import json
 
@@ -118,6 +119,24 @@ class GenAlg:
             # Select the top population for reproduction
             top_pop = self.Picker.pick_pop(self.nGenomes, fitness)
 
+            # TODO: change the code so the generalisation of "GenAlg will not change
+            # Rea's addition:
+            if True: #display data for biPed robot change for other models
+                genesNames = ["omega", "phi_start1", "phi_start2", "Amplitude",
+                              "phi_start1", "phi_start2", "Amplitude",
+                              "phi_start1", "phi_start2", "Amplitude",
+                              "x_fitness", "y_fitness", "z_fitness"]
+                bestFitnessOfBestGenes = [fitness[i] for i in top_pop]
+                currentBestGenes = [self.Gens[self.curGen][i] for i in top_pop]
+                currentBestGenes1 = np.concatenate((currentBestGenes, bestFitnessOfBestGenes), axis=1)
+                currentBestGenesRounded = np.around(currentBestGenes1, decimals=4) #round the array for aesthetics
+                row_format = "{:>15}" * (len(genesNames) + 1)
+                print row_format.format("", *genesNames)
+                for Gene, row in zip(np.arange(len(currentBestGenesRounded))+1, currentBestGenesRounded):
+                   print row_format.format(str(Gene)+")", *row)
+                print "" + bcolors.ENDC
+            ###############
+
             # Build the next generation
             new_pop, parents = self.Builder.build_pop(self.Gens[self.curGen], top_pop)
             self.Gens.append(new_pop)
@@ -128,8 +147,21 @@ class GenAlg:
 
         if self.verbose:
             print 'Finished running Genetic Algorithm'
+
+            plt.figure(1)
             plt.plot(range(self.nGenerations), self.fit_max)
+            plt.xlabel('Generation number')
+            plt.ylabel('Max fitness')
+            plt.grid(True)
+            plt.legend(['x_fit', 'y_fit', 'z_fit'])
+            plt.show()
+
+            plt.figure(2)
             plt.plot(range(self.nGenerations), self.fit_mean)
+            plt.xlabel('Generation number')
+            plt.ylabel('Mean fitness')
+            plt.grid(True)
+            plt.legend(['x_Mean_Fit', 'y_Mean_Fit', 'z_Mean_Fit'])
             plt.show()
 
         return self

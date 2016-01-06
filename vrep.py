@@ -849,6 +849,7 @@ def simxClearStringSignal(clientID, signalName, operationMode):
 def simxGetFloatSignal(clientID, signalName, operationMode):
     '''
     Please have a look at the function description/documentation in the V-REP user manual
+    :rtype: object
     '''
 
     signalValue = c_float()

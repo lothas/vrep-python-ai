@@ -60,6 +60,7 @@ class WalkerTester():
             vrep.simxGetFloatSignal(self.clientID, rbt_name+'_1', vrep.simx_opmode_streaming)
             vrep.simxGetFloatSignal(self.clientID, rbt_name+'_2', vrep.simx_opmode_streaming)
             vrep.simxGetFloatSignal(self.clientID, rbt_name+'_3', vrep.simx_opmode_streaming)
+            vrep.simxGetFloatSignal(self.clientID, rbt_name+'_4', vrep.simx_opmode_streaming)
 
         time.sleep(0.2)
         for rbt in self.robot_handles:
@@ -83,10 +84,10 @@ class WalkerTester():
     def run_trial(self, genomes):
         # Set the parameters for each robot
         for genome, robot in zip(genomes, self.robot_names):
-            par = [genome[:4], genome[4:8], genome[8:]]
-            par[1][0] = genome[0]
-            par[2][0] = genome[0]
-            # TODO : this is a temp. fix, change the genome so that will be only one omega
+            par = [[genome[0], genome[1], genome[2], genome[3]],
+                   [genome[0], genome[4], genome[5], genome[6]],
+                   [genome[0], genome[7], genome[8], genome[9]]]
+            # print par
             for j in range(len(par)):
                 # For each motor
                 for k in range(len(par[j])):
@@ -131,7 +132,7 @@ class WalkerTester():
                     # get rel position 2
                     res3, in3 = vrep.simxGetFloatSignal(self.clientID,
                                                         self.robot_names[i]+'_3', vrep.simx_opmode_buffer)
-                    # get rel position 3
+                    # get rel position z
                     res4, in4 = vrep.simxGetFloatSignal(self.clientID,
                                                         self.robot_names[i]+'_4', vrep.simx_opmode_buffer)
 
@@ -145,7 +146,7 @@ class WalkerTester():
                 if once:
                     if sum(new_data) == self.n_robots:
                         for i in range(self.n_robots):
-                            init_pos[i] = [robot_x[i][-1], robot_y[i][-1],robot_z[i][-1]]
+                            init_pos[i] = [robot_x[i][-1], robot_y[i][-1], robot_z[i][-1]]
                         once = False
                 else:
                     for i in range(self.n_robots):
@@ -160,7 +161,7 @@ class WalkerTester():
         for i in range(self.n_robots):
             x_fit = robot_x[i][-1] - init_pos[i][0]
             y_fit = 1/(1+20*fit_y[i])
-            z_fit = robot_z[i][-1]
+            z_fit = 0.5*robot_z[i][-1]
             trial_fitness.append([x_fit, y_fit, z_fit])
 
         # Stop and reset the simulation
