@@ -24,51 +24,87 @@ threadFunction=function()
 
 		
 		-- T = switch*A
-		for i=1,nMotors do
-			
-
-			
-			--simAddStatusbarMessage('i= '..i)
-			w = Par[i][1]
-			phiStart = Par[i][2]
-			phiEnd = Par[i][3]
-			Amplitude = Par[i][4]
-			
-			wt = w*simulationTime
-			--simAddStatusbarMessage('wt= '..wt)
-
-			if i==1 then 
-				joint=Hip
-			end
-			if i==2 then 
-				joint=foot1
-			end
-			if i==3 then 
-				joint=foot2
-			end
-			--simAddStatusbarMessage('The joint is= '..joint)
-			
-			if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
-				simSetJointForce(joint,Amplitude)
-				simSetJointTargetVelocity(joint,500)
-			else
-				simSetJointForce(joint,0)
-				simSetJointTargetVelocity(joint,0)
-			end
-			
+		--for i=1,nMotors do
+		w = Par[1][1]
+		wt = w*simulationTime
+		if math.floor(wt)%2==0 then
+			flag = 1
+		else
+			flag = -1
 		end
+
+		-- Hip
+		i = 1
+		joint=Hip
+		phiStart = Par[i][2]
+		phiEnd = Par[i][3]
+		Amplitude = flag*Par[i][4]	
+		if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
+			simSetJointForce(joint,Amplitude)
+			simSetJointTargetVelocity(joint,500)
+		else
+			simSetJointForce(joint,0)
+			simSetJointTargetVelocity(joint,0)
+		end
+		-- Hip end
+		
+		
+		-- foot1
+		i = 2
+		joint=foot1
+		if flag == -1 then
+			i=3
+		end
+		phiStart = Par[i][2]
+		phiEnd = Par[i][3]
+		Amplitude = Par[i][4]	
+		if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
+			simSetJointForce(joint,Amplitude)
+			simSetJointTargetVelocity(joint,500)
+		else
+			simSetJointForce(joint,0)
+			simSetJointTargetVelocity(joint,0)
+		end
+		-- foot1 end
+
+		-- foot2 --
+		i = 3
+		joint=foot2
+		if flag == -1 then
+			i=2
+		end
+		phiStart = Par[i][2]
+		phiEnd = Par[i][3]
+		Amplitude = Par[i][4]	
+		if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
+			simSetJointForce(joint,Amplitude)
+			simSetJointTargetVelocity(joint,500)
+		else
+			simSetJointForce(joint,0)
+			simSetJointTargetVelocity(joint,0)
+		end
+		-- foot2 end --
+
 		
 		-- Update the output signal
 		rel_position=simGetObjectPosition(Object,line)
+		
+		-- distance which the robot advanced:
 		Shoe1_position=simGetObjectPosition(Shoe1,line)
 		Shoe2_position=simGetObjectPosition(Shoe2,line)
-		--HipJoint_position=simGetObjectPosition(HipPosition,line)
-		HipJoint_position=simGetObjectPosition(Hip,line)
 		avg_pos_shoes=((Shoe1_position[1]+Shoe2_position[1])*0.5)
+		
+		-- final hight of the robot
+		HipJoint_position=simGetObjectPosition(Hip,line)
+		if HipJoint_position[3] > 0.3 then
+			standTimeScore = standTimeScore + 1
+		end
+		
 		simSetFloatSignal(Name..'_1',simulationTime)
 		simSetFloatSignal(Name..'_2',avg_pos_shoes)
 		simSetFloatSignal(Name..'_3',rel_position[2])
 		simSetFloatSignal(Name..'_4',HipJoint_position[3])
+		simSetFloatSignal(Name..'_5',standTimeScore)
 
 	    end
 	end
@@ -80,8 +116,12 @@ threadFunction=function()
 -- Put some initialization code here:
 simSetThreadSwitchTiming(20) -- Default timing for automatic thread switching
 
+-- initialization parameters:
 nMotors = 3
-nParameters =4
+nParameters = 4
+standTimeScore = 0
+previousSimulationTime=simGetSimulationTime()
+flag = 1
 
 -- Get the robot's name and components
 Script = simGetScriptHandle()
@@ -104,7 +144,6 @@ else
 end
 line = simGetObjectHandle("StraightLine"..robotNumber)
 
-previousSimulationTime=simGetSimulationTime()
 
 -- Get parameters by robot name:
 Par = getParameters()

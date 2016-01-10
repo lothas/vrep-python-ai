@@ -122,7 +122,7 @@ class GenAlg:
 
             # Select the top population for reproduction
             top_pop = self.Picker.pick_pop(self.nGenomes, fitness)
-
+            
             # Rea's addition:
             if True:  #display data for biPed robot change for other models
                 BestNames = self.genesNames + self.FitNames

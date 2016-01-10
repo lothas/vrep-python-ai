@@ -64,6 +64,7 @@ class WalkerTester():
             vrep.simxGetFloatSignal(self.clientID, rbt_name+'_2', vrep.simx_opmode_streaming)
             vrep.simxGetFloatSignal(self.clientID, rbt_name+'_3', vrep.simx_opmode_streaming)
             vrep.simxGetFloatSignal(self.clientID, rbt_name+'_4', vrep.simx_opmode_streaming)
+            vrep.simxGetFloatSignal(self.clientID, rbt_name+'_5', vrep.simx_opmode_streaming)
 
         time.sleep(0.2)
         for rbt in self.robot_handles:
@@ -111,6 +112,7 @@ class WalkerTester():
         robot_y = [[] for i in range(self.n_robots)]
         robot_z = [[] for i in range(self.n_robots)]
         init_pos = [[] for i in range(self.n_robots)]
+        robot_tStandScore = [[] for i in range(self.n_robots)]
         fit_y = [0 for i in range(self.n_robots)]
 
         t_step = 0.01  # how often to check the simulation's signals
@@ -138,12 +140,16 @@ class WalkerTester():
                     # get rel position z
                     res4, in4 = vrep.simxGetFloatSignal(self.clientID,
                                                         self.robot_names[i]+'_4', vrep.simx_opmode_buffer)
+                    # stand time score
+                    res5, in5 = vrep.simxGetFloatSignal(self.clientID,
+                                                        self.robot_names[i]+'_5', vrep.simx_opmode_buffer)
 
-                    if res1 == 0 and res2 == 0 and res3 == 0:
+                    if res1 == 0 and res2 == 0 and res3 == 0 and res4 == 0 and res5 == 0:
                         sim_time[i].append(in1)
                         robot_x[i].append(in2)
                         robot_y[i].append(in3)
                         robot_z[i].append(in4)
+                        robot_tStandScore[i].append(in5)
                         new_data[i] = 1  # new data arrived
 
                 if once:
@@ -164,7 +170,12 @@ class WalkerTester():
         for i in range(self.n_robots):
             x_fit = robot_x[i][-1] - init_pos[i][0]
             # y_fit = 1/(1+20*fit_y[i])
-            z_fit = robot_z[i][-1]
+            # if robot_z[i][-1] < 0.5:
+            #     z_fit = 0
+            # else:
+            #     z_fit = robot_z[i][-1]
+            StandScore_fit = robot_tStandScore[i][-1]
+
             # control effort normalized by x distance
             if x_fit > 0:
                 HipEffort = math.pow(genome[3], 2)
@@ -174,7 +185,8 @@ class WalkerTester():
                 normConEffortFit = 1/normConEffortFit_temp
             else:
                 normConEffortFit = 0
-            trial_fitness.append([x_fit, normConEffortFit, z_fit])
+
+            trial_fitness.append([x_fit, normConEffortFit, StandScore_fit])
 
         # Stop and reset the simulation
         vrep.simxStopSimulation(self.clientID, vrep.simx_opmode_oneshot)
