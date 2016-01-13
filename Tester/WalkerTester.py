@@ -174,7 +174,7 @@ class WalkerTester():
             #     z_fit = 0
             # else:
             #     z_fit = robot_z[i][-1]
-            StandScore_fit = robot_tStandScore[i][-1]
+            StandScore_fit = 0.1*robot_tStandScore[i][-1]
 
             # control effort normalized by x distance
             if x_fit > 0:

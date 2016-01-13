@@ -122,7 +122,7 @@ class GenAlg:
 
             # Select the top population for reproduction
             top_pop = self.Picker.pick_pop(self.nGenomes, fitness)
-            
+
             # Rea's addition:
             if True:  #display data for biPed robot change for other models
                 BestNames = self.genesNames + self.FitNames
@@ -155,10 +155,9 @@ class GenAlg:
             plt.plot(range(self.nGenerations), self.fit_max)
             plt.title("Max fitness values")
             plt.xlabel('Generation number')
-            plt.ylabel('Max fitness')
+            plt.ylabel('Max fitness value')
             plt.grid(True)
             plt.legend(self.FitNames)
-
 
             plt.figure(2)
             plt.plot(range(self.nGenerations), self.fit_mean)
