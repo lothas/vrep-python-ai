@@ -49,7 +49,7 @@ if __name__ == '__main__':
     # Load data from save file
     # GA = GA.load("LineFolGA-12_11-09_34.txt")
 
-    GA = GA.run()
+    GA = GA.run
     print(GA.Fits)
     print(GA.Gens)
 

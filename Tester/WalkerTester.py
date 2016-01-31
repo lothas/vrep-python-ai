@@ -179,9 +179,13 @@ class WalkerTester():
             # control effort normalized by x distance
             if x_fit > 0:
                 HipEffort = math.pow(genome[3], 2)
-                foot1Effort = math.pow(genome[6], 2)
-                foot2Effort = math.pow(genome[9], 2)
-                normConEffortFit_temp = (genome[2]*HipEffort + genome[5]*foot1Effort + genome[8]*foot2Effort)/x_fit
+                knee1Effort = math.pow(genome[6], 2)
+                knee2Effort = math.pow(genome[9], 2)
+                ankle1Effort = math.pow(genome[12], 2)
+                ankle2Effort = math.pow(genome[15], 2)
+                # normConEffortFit_temp = (genome[2]*HipEffort + genome[5]*knee1Effort + genome[8]*knee2Effort + genome[11]*ankle1Effort + genome[14]*ankle2Effort)/x_fit
+                # knees are locked for now:
+                normConEffortFit_temp = (genome[2]*HipEffort + genome[11]*ankle1Effort + genome[14]*ankle2Effort)/x_fit
                 normConEffortFit = 1/normConEffortFit_temp
             else:
                 normConEffortFit = 0

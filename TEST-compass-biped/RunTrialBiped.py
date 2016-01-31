@@ -10,6 +10,7 @@ sys.path.insert(0, parentDir)  # Add the parent directory where 'vrep' is locate
 
 import vrep
 import time
+import numpy as np
 
 print ('Program started')
 
@@ -32,13 +33,28 @@ else:
 vrep.simxStopSimulation(clientID, vrep.simx_opmode_oneshot)
 time.sleep(0.2)
 
+# Parameters:
+w = 0.01
+HipAmp = 0
+toeOffAmp = 30
+flexAmp = 0
+
+HipPhiStart =    0.1 * np.ones(5)
+toeOffPhiStart = 0.01 * np.ones(5)
+flexPhiStart =   0.09 * np.ones(5)
+
+HipDelPhi =    0.1 * np.ones(5)
+toeOffDelPhi = 0.4 * np.ones(5)
+flexDelPhi =   0.01 * np.ones(5)
+
 # Initialize simulation parameters
 RobotNames = ["Leg1", "Leg1#0", "Leg1#1", "Leg1#2", "Leg1#3"]
-Params = [[[100, 0.3, 0.6, 50], [100, 0.2, 0.6, 50], [100, 0.2, 0.6, 50]],
-          [[10, 0.3, 0.6, 50], [10, 0.2, 0.6, 50], [10, 0.2, 0.6, 50]],
-          [[100, 0.3, 0.6, 50], [100, 0.2, 0.6, 50], [100, 0.2, 0.6, 50]],
-          [[1000, 0.3, 0.6, 50], [1000, 0.2, 0.6, 50], [1000, 0.2, 0.6, 50]],
-          [[1, 0.2, 0.6, 5], [1, 0.2, 0.6, 5], [1, 0.2, 0.6, 5]]]
+Params = [[[w, HipPhiStart[0], HipDelPhi[0], HipAmp], [w, 0.2, 0.6, 10], [w, 0.2, 0.6, 10], [w, toeOffPhiStart[0], toeOffDelPhi[0], toeOffAmp], [w, flexPhiStart[0], flexPhiStart[0], flexAmp]],
+          [[w, HipPhiStart[1], HipDelPhi[1], HipAmp], [w, 0.2, 0.6, 10], [w, 0.2, 0.6, 10], [w, toeOffPhiStart[1], toeOffDelPhi[1], toeOffAmp], [w, flexPhiStart[1], flexPhiStart[1], flexAmp]],
+          [[w, HipPhiStart[2], HipDelPhi[2], HipAmp], [w, 0.2, 0.6, 10], [w, 0.2, 0.6, 10], [w, toeOffPhiStart[2], toeOffDelPhi[2], toeOffAmp], [w, flexPhiStart[2], flexPhiStart[2], flexAmp]],
+          [[w, HipPhiStart[3], HipDelPhi[3], HipAmp], [w, 0.2, 0.6, 10], [w, 0.2, 0.6, 10], [w, toeOffPhiStart[3], toeOffDelPhi[3], toeOffAmp], [w, flexPhiStart[3], flexPhiStart[3], flexAmp]],
+          [[w, HipPhiStart[4], HipDelPhi[4], HipAmp], [w, 0.2, 0.6, 10], [w, 0.2, 0.6, 10], [w, toeOffPhiStart[4], toeOffDelPhi[4], toeOffAmp], [w, flexPhiStart[4], flexPhiStart[4], flexAmp]]]
+
 for i in range(len(RobotNames)):
     rN = RobotNames[i]
     Par = Params[i]

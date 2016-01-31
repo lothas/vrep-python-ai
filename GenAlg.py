@@ -22,7 +22,7 @@ import json
 # endCond is passed, GenAlg will run until the max number of generations is reached.
 class GenAlg:
     # GenAlg constructor
-    def __init__(self, n_genomes, n_generations, tester, picker, builder, genesNames, FitNames, init_pop=0, end_cond=0, filename=[]):
+    def __init__(self, n_genomes, n_generations, tester, picker, builder, genesNames, FitNames, init_pop=0, end_cond=0, filename=[], filename1=[]):
         self.verbose = True  # Set to true to print out intermediate optimization results
 
         self.nGenomes = n_genomes
@@ -69,7 +69,19 @@ class GenAlg:
                            + "Ran a population of " + str(self.nGenomes) + " over {0} generations on " \
                            + datetime.datetime.now().strftime("%Y-%m-%d starting at %H:%M")
 
+        # Data saving info
+        if not filename1:
+            self.save_filename1 = "GA-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
+        else:
+            self.save_filename1 = filename1
+        self.description1 = "Best Pop Results for GA with " + self.Tester.name + ", " + self.Picker.name + " and " \
+                           + self.Builder.name + ".\n" \
+                           + "Ran a population of " + str(self.nGenomes) + " over {0} generations on " \
+                           + datetime.datetime.now().strftime("%Y-%m-%d starting at %H:%M")
+
         self.curGen = 0
+
+
     # End GenAlg constructor
 
     def load(self, filename):
@@ -81,6 +93,7 @@ class GenAlg:
             self.Gens = [data[1][-1]]
         return self
 
+    @property
     def run(self):
         if self.verbose:
             print bcolors.HEADER + bcolors.BOLD + "Running Genetic Algorithm..." + bcolors.ENDC
@@ -89,6 +102,9 @@ class GenAlg:
         with open(self.save_filename, 'w') as f:
             f.close()
 
+        # Open save file with 'w' to clean it up
+        # with open(self.save_filename1, 'w') as f:
+        #     f.close()
 
         # While the end-condition or the max. number of generations hasn't been reached do:
         while self.curGen < self.nGenerations and not self.endCond(self.Fits):
@@ -123,21 +139,30 @@ class GenAlg:
             # Select the top population for reproduction
             top_pop = self.Picker.pick_pop(self.nGenomes, fitness)
 
+            # seperating best genes for display
+            BestNames = self.genesNames + self.FitNames
+            bestFitnessOfBestGenes = [fitness[i] for i in top_pop]
+            currentBestGenes = [self.Gens[self.curGen][i] for i in top_pop]
+            currentBestGenes1 = np.concatenate((currentBestGenes, bestFitnessOfBestGenes), axis=1)
+            currentBestGenesRounded = np.around(currentBestGenes1, decimals=4) #round the array for aesthetics
+
             # Rea's addition:
             if True:  #display data for biPed robot change for other models
-                BestNames = self.genesNames + self.FitNames
-                bestFitnessOfBestGenes = [fitness[i] for i in top_pop]
-                currentBestGenes = [self.Gens[self.curGen][i] for i in top_pop]
-                currentBestGenes1 = np.concatenate((currentBestGenes, bestFitnessOfBestGenes), axis=1)
-                currentBestGenesRounded = np.around(currentBestGenes1, decimals=4) #round the array for aesthetics
                 row_format = "{:>15}" * (len(BestNames) + 1)
                 print row_format.format("", *BestNames)
+                with open(self.save_filename1, 'a') as f:
+                    f.write("%s )" % self.curGen)
+                    f.write("%s\n" % row_format.format("", *BestNames) )
+                    f.close()
                 for Gene, row in zip(np.arange(len(currentBestGenesRounded))+1, currentBestGenesRounded):
                     if top_pop[Gene-1] in fit_max_ind:
                         print bcolors.OKGREEN + str(row_format.format(str(Gene)+")", *row)) + bcolors.ENDC
+                        with open(self.save_filename1, 'a') as f:
+                            f.write("%s\n" %str(row_format.format(str(Gene)+")", *row)))
+                            f.close()
                     else:
                         print row_format.format(str(Gene)+")", *row)
-                print "" + bcolors.ENDC
+                    print "" + bcolors.ENDC
             ###############
 
             # Build the next generation

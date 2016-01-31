@@ -21,70 +21,87 @@ threadFunction=function()
 		dt=simulationTime-previousSimulationTime
 		previousSimulationTime=simulationTime
 		state=simGetSimulationState()
-
+		--simAddStatusbarMessage(dt)
 		
-		-- T = switch*A
-		--for i=1,nMotors do
+		-- Motor order:  i = 1,2,...
+		-- 1)Hip, 2)knee1, 3)knee2, 4)toeOff, 5)flex
+		-- Genome order: j=1,2,3,40
+		-- 1)omega, 2)phi_start, 3)delta_phi, 4)delta_phi
+		
 		w = Par[1][1]
 		wt = w*simulationTime
-		if math.floor(wt)%2==0 then
-			flag = 1
-		else
-			flag = -1
+		
+		if phiWt > 1 then
+			flag = flag*(-1)
+			phiWt = 0
 		end
 
+		-- phi_X is between '0' to '1'
+		phiWt = phiWt + wt
+		
 		-- Hip
 		i = 1
 		joint=Hip
 		phiStart = Par[i][2]
 		phiEnd = Par[i][3]
-		Amplitude = flag*Par[i][4]	
-		if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
+		Amplitude = Par[i][4]	
+		if phiWt>=phiStart and phiWt<(phiEnd+phiStart) then
+			simSetJointTargetVelocity(joint,flag*2000)
 			simSetJointForce(joint,Amplitude)
-			simSetJointTargetVelocity(joint,500)
 		else
-			simSetJointForce(joint,0)
 			simSetJointTargetVelocity(joint,0)
+			simSetJointForce(joint,0)
 		end
 		-- Hip end
 		
+		-- Determine the stnace and swing leg:
+		if flag == 1 then --swing leg is 1:
+			Kneejoint=knee1
+			Anklejoint=ankle1
+			kneeIndex = 2 -- check if that is the correct knee!!!
+		else -- swing leg is 2:
+			Kneejoint=knee2
+			Anklejoint=ankle2
+			kneeIndex = 3
+		end	
 		
-		-- foot1
-		i = 2
-		joint=foot1
-		if flag == -1 then
-			i=3
+		-- knees
+		phiStart = Par[kneeIndex][2]
+		phiEnd = Par[kneeIndex][3]
+		Amplitude = Par[kneeIndex][4]	
+		if phiWt>=phiStart and phiWt<(phiEnd+phiStart) then
+			simSetJointTargetVelocity(Kneejoint,0)
+			simSetJointForce(Kneejoint,Amplitude)
+		else
+			simSetJointTargetVelocity(Kneejoint,0)
+			simSetJointForce(Kneejoint,0)
 		end
+
+		-- toeOff:
+		i = 4
 		phiStart = Par[i][2]
 		phiEnd = Par[i][3]
 		Amplitude = Par[i][4]	
-		if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
-			simSetJointForce(joint,Amplitude)
-			simSetJointTargetVelocity(joint,500)
+		if phiWt>=phiStart and phiWt<(phiEnd+phiStart) then
+			simSetJointTargetVelocity(Anklejoint,-2000)
+			simSetJointForce(Anklejoint,Amplitude)
 		else
-			simSetJointForce(joint,0)
-			simSetJointTargetVelocity(joint,0)
+			simSetJointTargetVelocity(Anklejoint,0)
+			simSetJointForce(Anklejoint,0)
 		end
-		-- foot1 end
 
-		-- foot2 --
-		i = 3
-		joint=foot2
-		if flag == -1 then
-			i=2
-		end
+		-- ankle flex:
+		i = 5
 		phiStart = Par[i][2]
 		phiEnd = Par[i][3]
 		Amplitude = Par[i][4]	
-		if (wt-math.floor(wt))>=phiStart and (wt-math.floor(wt))<(phiEnd+phiStart) then
-			simSetJointForce(joint,Amplitude)
-			simSetJointTargetVelocity(joint,500)
+		if phiWt>=phiStart and phiWt<(phiEnd+phiStart) then
+			simSetJointTargetVelocity(Anklejoint,2000)
+			simSetJointForce(Anklejoint,Amplitude)
 		else
-			simSetJointForce(joint,0)
-			simSetJointTargetVelocity(joint,0)
+			simSetJointTargetVelocity(Anklejoint,0)
+			simSetJointForce(Anklejoint,0)
 		end
-		-- foot2 end --
-
 		
 		-- Update the output signal
 		rel_position=simGetObjectPosition(Object,line)
@@ -97,15 +114,29 @@ threadFunction=function()
 		-- final hight of the robot
 		HipJoint_position=simGetObjectPosition(Hip,line)
 		if HipJoint_position[3] > 0.3 then
-			standTimeScore = standTimeScore + 1
+			if fallFlag == 0 then
+				standTimeScore = simulationTime
+			end
+		else
+			fallFlag = 1
+		end
+		
+		-- if robot jump forward => give penalty
+		if Shoe1_position[3]>0.2 and Shoe2_position[3]>0.2 then
+			jumpFlag = 1
+			--simAddStatusbarMessage('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 		end
 		
 		simSetFloatSignal(Name..'_1',simulationTime)
-		simSetFloatSignal(Name..'_2',avg_pos_shoes)
 		simSetFloatSignal(Name..'_3',rel_position[2])
 		simSetFloatSignal(Name..'_4',HipJoint_position[3])
 		simSetFloatSignal(Name..'_5',standTimeScore)
-
+		if jumpFlag == 1 then
+			simSetFloatSignal(Name..'_2',avg_ini_pos_shoes)
+		else
+			simSetFloatSignal(Name..'_2',avg_pos_shoes)
+		end
+		
 	    end
 	end
 
@@ -117,21 +148,29 @@ threadFunction=function()
 simSetThreadSwitchTiming(20) -- Default timing for automatic thread switching
 
 -- initialization parameters:
-nMotors = 3
+nMotors = 5
 nParameters = 4
 standTimeScore = 0
 previousSimulationTime=simGetSimulationTime()
+jumpFlag = 0
+fallFlag = 0
 flag = 1
+phiWt = 0
 
 -- Get the robot's name and components
 Script = simGetScriptHandle()
 Object = simGetObjectAssociatedWithScript(Script)
 Name = simGetObjectName(Object)
 
+-- joints
 Hip=simGetObjectHandle('Hip')
+knee1=simGetObjectHandle('knee1')
+knee2=simGetObjectHandle('knee2')
+ankle1=simGetObjectHandle('ankle1')
+ankle2=simGetObjectHandle('ankle2')
+
+-- other elements
 HipPosition=simGetObjectHandle('HipPosition1')
-foot1=simGetObjectHandle('foot1')
-foot2=simGetObjectHandle('foot2')
 Shoe1=simGetObjectHandle('Shoe1')
 Shoe2=simGetObjectHandle('Shoe2')
 
@@ -144,10 +183,22 @@ else
 end
 line = simGetObjectHandle("StraightLine"..robotNumber)
 
+-- get initial x-disrance
+Shoe1_ini_Position=simGetObjectPosition(Shoe1,line)
+Shoe2_ini_Position=simGetObjectPosition(Shoe2,line)
+avg_ini_pos_shoes=((Shoe1_ini_Position[1]+Shoe2_ini_Position[1])*0.5)
 
--- Get parameters by robot name:
+-- Remote Control:
 Par = getParameters()
---Par={{10, 0.1, 0.8, 55}, {10, 0.1, 0.8, 55}, {10, 0.1, 0.8, 55}}
+
+-- Manual local control:
+--omega_local = 2
+-- 1)Hip, 2)knee1, 3)knee2, 4)toeOff, 5)flex
+--Par={{omega_local, 0.19, 0.8, 70},
+--	{omega_local, 0.1, 0.8, 55},
+--	{omega_local, 0.1, 0.8, 55}, 
+--	{omega_local, 0.01, 0.2, -40}, 
+--	{omega_local, 0.21, 0.6, 55}}
 
 -- Here we execute the regular thread code:
 res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)

@@ -46,4 +46,4 @@ if __name__ == '__main__':
     builder = Builder.Builder(gen_min, gen_max, n_genomes, build_plan)
 
     GA = GenAlg(n_genomes, n_generations, tester, picker, builder)
-    GA = GA.run()
+    GA = GA.run

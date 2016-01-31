@@ -20,21 +20,27 @@ import datetime
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 200
-    n_generations = 10
-    simTimeLimit = 5  # t in [seconds]
+    n_genomes = 300
+    n_generations = 200
+    simTimeLimit = 3  # t in [seconds]
 
-    genesNames = ["omega", "phi_start1", "phi_end1", "Amplitude",
-                  "phi_start1", "phi_end2", "Amplitude",
-                  "phi_start1", "phi_end3", "Amplitude"]
+    genesNames = ["omega", "phi_s_Hip", "phi_e_Hip", "Amp_Hip",
+                  "phi_s_knee1", "phi_e_knee1", "Amp_knee1",
+                  "phi_s_knee2", "phi_e_knee2", "Amp_knee2",
+                  "phi_s_toeOff", "dphi_toeOff", "Amp_toeOff",
+                  "phi_s_flex", "dphi_flex", "Amp_flex"]
     FitNames = ["x_fitness", "U_fit", "STS_fitness"]
 
-    gen_max = [5, 0.9, 0.09, 40,
-               0.9, 0.09, 30,
-               0.9, 0.09, 30]
-    gen_min = [0.3, 0, 0.01, 0,
-               0, 0.01, -30,
-               0, 0.01, -30]
+    gen_max = [0.5, 0.2, 0.6, 40,
+               0.9, 0.09, 20,
+               0.9, 0.09, 20,
+               0.1, 0.3, 40,
+               0.4, 0.5, 20]
+    gen_min = [0.01, 0, 0.01, 10,
+               0, 0.01, 0,
+               0, 0.01, 0,
+               0, 0.01, 10,
+               0.1, 0.1, 5]
         # TODO: 3) add to the fitness energy calculation
 
     # Generation build plan
@@ -47,13 +53,14 @@ if __name__ == '__main__':
     picker = ParetoPicker.ParetoPicker(top_n)
     builder = Builder.Builder(gen_min, gen_max, n_genomes, build_plan)
 
-    filename = "WalkerGA_try4-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
-    GA = GenAlg(n_genomes, n_generations, tester, picker, builder,  genesNames, FitNames, filename=filename)
+    filename = "WalkerGA_noKnee_try4-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
+    best_filename = "WalkerGA_BestPop-" + datetime.datetime.now().strftime("%m_%d-%H_%M") + ".txt"
+    GA = GenAlg(n_genomes, n_generations, tester, picker, builder,  genesNames, FitNames, filename=filename, filename1=best_filename)
 
     # Load data from save file
-    GA = GA.load("WalkerGA_try4-01_12-16_09.txt")
+    # GA = GA.load("WalkerGA_noKnee_try3-01_31-09_49.txt")
 
-    GA = GA.run()
+    GA = GA.run
     print(GA.Fits)
     print(GA.Gens)
 
