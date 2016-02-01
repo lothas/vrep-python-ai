@@ -90,7 +90,9 @@ class WalkerTester():
         for genome, robot in zip(genomes, self.robot_names):
             par = [[genome[0], genome[1], genome[2], genome[3]],
                    [genome[0], genome[4], genome[5], genome[6]],
-                   [genome[0], genome[7], genome[8], genome[9]]]
+                   [genome[0], genome[7], genome[8], genome[9]],
+                   [genome[0], genome[10], genome[11], genome[12]],
+                   [genome[0], genome[13], genome[14], genome[15]]]
 
             for j in range(len(par)):
                 # For each motor
