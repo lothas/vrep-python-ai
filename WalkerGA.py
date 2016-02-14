@@ -20,30 +20,34 @@ import datetime
 
 if __name__ == '__main__':
     # Genetic algorithm parameters
-    n_genomes = 20
-    n_generations = 2
-    simTimeLimit = 3  # t in [seconds]
+    n_genomes = 300
+    n_generations = 20
+    simTimeLimit = 4  # t in [seconds]
 
     genesNames = ["omega", "phi_s_Hip", "phi_e_Hip", "Amp_Hip",
                   "phi_s_knee1", "phi_e_knee1", "Amp_knee1",
                   "phi_s_knee2", "phi_e_knee2", "Amp_knee2",
                   "phi_s_toeOff", "dphi_toeOff", "Amp_toeOff",
-                  "phi_s_flex", "dphi_flex", "Amp_flex"]
+                  "phi_s_flex", "dphi_flex", "Amp_flex",
+                  "phi_s_PushOff", "dphi_PushOff", "Amp_PushOff"]
     FitNames = ["x_fitness", "U_fit", "STS_fitness"]
 
     # temp change: 1) toe_off start = 0 always
     #              2) phiStart_flex = delta_phi_toeOff
     #              3) phiStart_hip_real = delta_phi_toeOff + phiStart_hip (that I give in Python)
-    gen_max = [0.8, 0.05, 0.1, -10,
+    aa = 1.5/0.7
+    gen_max = [1.8, 0.11*aa, 0.13*aa, -14,
                0.9, 0.09, 20,
                0.9, 0.09, 20,
-               0.01, 0.2, -15,
-               0.4, 0.2, 4]
-    gen_min = [0.4, 0, 0.01, -25,
-               0, 0.01, 0,
-               0, 0.01, 0,
-               0, 0.05, -25,
-               0.1, 0.1, 2]
+               0.002*aa, 0.21*aa, -10.7,
+               0.21*aa, 0.41*aa, 1.52,
+               0.36*aa, 0.11*aa, -9.9]
+    gen_min = [1.4, 0.09*aa, 0.11*aa, -16,
+               0*aa, 0.01*aa, 0,
+               0*aa, 0.01*aa, 0,
+               0.0009*aa, 0.19*aa, -10.9,
+               0.19*aa, 0.39*aa, 1.48,
+               0.34*aa, 0.09*aa, -10.1]
 
     # Generation build plan
     top_n = 0.2
@@ -60,7 +64,7 @@ if __name__ == '__main__':
     GA = GenAlg(n_genomes, n_generations, tester, picker, builder,  genesNames, FitNames, filename=filename, filename1=best_filename)
 
     # Load data from save file
-    # GA = GA.load("WalkerGA_noKnee_try3-01d_31-09_49.txt")
+    GA = GA.load("WalkerGA_noKnee-02_10-09_33.txt")
 
     GA = GA.run
     print(GA.Fits)

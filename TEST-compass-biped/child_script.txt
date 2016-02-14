@@ -24,6 +24,40 @@ ampSign=function(x)
 	end
 end
 
+moveMotor_CPG = function(joint,phiStart,phiEnd,Amp,flag,phiWt)
+	--simAddStatusbarMessage('the joint is '..joint)
+	--simAddStatusbarMessage('the phiStart is '..phiStart)
+	--simAddStatusbarMessage('the phiEnd is '..phiEnd)
+	--simAddStatusbarMessage('the Amp is '..Amp)
+	--simAddStatusbarMessage('the flag is '..flag)
+	if phiWt >= phiStart and phiWt < phiEnd then -- if to move the joint or not...
+		amplitudeJoint = math.abs(Amp)
+		Amp_sign_joint = ampSign(Amp)
+	else
+		amplitudeJoint = 0
+		Amp_sign_joint = 0
+	end
+		
+	--simAddStatusbarMessage('the joint is '..joint)
+	--simAddStatusbarMessage('the amplitudeJoint is '..amplitudeJoint)
+	--simAddStatusbarMessage('the Amp_sign_joint is '..Amp_sign_joint)
+
+	if joint == Hip then 
+		simSetJointTargetVelocity(joint,flag*Amp_sign_joint*2000)
+		simSetJointForce(joint,amplitudeJoint)
+	else
+		simSetJointTargetVelocity(joint,Amp_sign_joint*2000)
+		simSetJointForce(joint,amplitudeJoint)
+	end
+end
+
+moveMotor_Reflex = function(joint,Amp)
+	amplitudeJoint = math.abs(Amp)
+	Amp_sign_joint = ampSign(Amp)
+	simSetJointTargetVelocity(joint,Amp_sign_joint*2000)
+	simSetJointForce(joint,amplitudeJoint)
+end
+
 threadFunction=function()
 
 	while simGetSimulationState()~=sim_simulation_advancing_abouttostop do
@@ -33,35 +67,50 @@ threadFunction=function()
 		state=simGetSimulationState()
 		--simAddStatusbarMessage(dt)
 		
+		-- Reflexes:
+		Legs_angle=simGetObjectOrientation(Leg1,Leg2)
+		--simAddStatusbarMessage(Legs_angle[3])
+		--simAddStatusbarMessage(flag)
+		if math.abs(Legs_angle[3])<0.01 then
+			LegsTogetherFlag = 1
+			--simAddStatusbarMessage('Legs togther')
+		else
+			LegsTogetherFlag = 0
+			--simAddStatusbarMessage('Legs NOT togther')
+		end
+
+		
 		-- Par[i][j] as:
 		-- Motor order:  i = 1,2,...
 		-- 1)Hip, 2)knee1, 3)knee2, 4)toeOff, 5)flex
 		-- Genome order: j=1,2,3,4
 		-- 1)omega, 2)phi_start, 3)delta_phi, 4)delta_phi
 		
-		w = Par[1][1]
 		wt = w*dt
-		--simAddStatusbarMessage(simulationTime)
+		
 		if phiWt > 1 then
 			flag = flag*(-1)
 			phiWt = 0
 		end
 
-		-- phi_X is between '0' to '1'
-		phiWt = phiWt + wt
-		
+		phiWt = phiWt + wt  -- phi_X is between '0' to '1'
+
 		-- Determine the stnace and swing leg:
 		if flag == 1 then --swing leg is 1:
 			Kneejoint=knee1
 			Anklejoint=ankle1
+			stanceAnkle=ankle2
 			kneeIndex = 2 -- check if that is the correct knee!!!
 		else -- swing leg is 2:
 			Kneejoint=knee2
 			Anklejoint=ankle2
+			stanceAnkle=ankle1
 			kneeIndex = 3
 		end	
 		
 		if true then-- for the knees ==> need to be implemented!!
+		
+		
 		-- knees
 		phiStart_knee = Par[kneeIndex][2]
 		phiEnd_knee = Par[kneeIndex][3]
@@ -75,67 +124,28 @@ threadFunction=function()
 		end
 		end
 
-		-- toeOff:
-		Amplitude_toeOff = Par[4][4]
-		phiStart_toeOff = 0 --Par[4][2]
-		delta_Phi_toeOff = Par[4][3]
-		phiEnd_toeOff = phiStart_toeOff+delta_Phi_toeOff
-		if phiEnd_toeOff > 1 then
-			phiEnd_toeOff =1
-			simAddStatusbarMessage("warning: phiEnd_toeOff was bigger than 1!!")
-		end	
-		
-		-- ankle flex:
-		Amplitude_flex = Par[5][4]
-		phiStart_flex = delta_Phi_toeOff --Par[5][2] --flex starts after toe_off
-		delta_Phi_flex = Par[5][3]
-		phiEnd_flex = phiStart_flex+delta_Phi_flex
-		if phiEnd_flex > 1 then
-			phiEnd_flex =1
-			simAddStatusbarMessage("warning: phiEnd_flex was bigger than 1!!")
-		end	
-		
-		if phiWt >= phiStart_toeOff and phiWt < phiEnd_toeOff then
-				Amplitude_ankle = math.abs(Amplitude_toeOff)
-				Amp_sign_ankle = ampSign(Amplitude_toeOff)	
-				if phiWt >= phiStart_flex and phiWt < phiEnd_flex then --for debugging, remove later
-					simAddStatusbarMessage("warning: toe_off and flex is in the same time!!")
-				end
-		elseif phiWt >= phiStart_flex and phiWt < phiEnd_flex then
-				Amplitude_ankle = math.abs(Amplitude_flex)
-				Amp_sign_ankle = ampSign(Amplitude_flex)
-		else
-			Amplitude_ankle = 0
-			Amp_sign_ankle = 0
+		--------------Move ankles---------------------------------------------------
+		if phiWt >= phiStart_toeOff and phiWt < phiEnd_toeOff then -- time to ToeOff:
+			moveMotor_CPG(Anklejoint,phiStart_toeOff,phiEnd_toeOff,Amplitude_toeOff,flag,phiWt)
+		else													   -- time to flex:
+			moveMotor_CPG(Anklejoint,phiStart_flex,phiEnd_flex,Amplitude_flex,flag,phiWt)
 		end
-		
-		-- Hip
-		phiStart_hip = delta_Phi_toeOff + Par[1][2]	-- hip start after toe_off
-		delta_Phi_hip = Par[1][3]
-		
-		if phiWt>=phiStart_hip and phiWt<(phiStart_hip+delta_Phi_hip) then
-			Amplitude_hip = math.abs(Par[1][4])
-			Amp_sign_hip = ampSign(Par[1][4])			
+		--------------Move Hip------------------------------------------------------
+		moveMotor_CPG(Hip,phiStart_hip,phiEnd_hip,Amplitude_hip,flag,phiWt)
+
+		if LegsTogetherFlag == 0 then --Reflex:
+			moveMotor_Reflex(stanceAnkle,0)
 		else
-			Amplitude_hip = 0
-			Amp_sign_hip = 0
+			moveMotor_Reflex(stanceAnkle,Amplitude_prePushOff)
+			--simAddStatusbarMessage('Push_Off')
 		end
-		-- Hip end
-		
-		-- activating the joints:
-		simSetJointTargetVelocity(Hip,flag*Amp_sign_hip*2000) --Hip
-		simSetJointForce(Hip,Amplitude_hip)
-		simSetJointTargetVelocity(Anklejoint,Amp_sign_ankle*2000) --ankle
-		simSetJointForce(Anklejoint,Amplitude_ankle)
-		
+
 		-- Update the output signal
 		rel_position=simGetObjectPosition(Object,line)
-		
 		-- distance which the robot advanced:
 		Shoe1_position=simGetObjectPosition(Shoe1,line)
 		Shoe2_position=simGetObjectPosition(Shoe2,line)
 		avg_pos_shoes=((Shoe1_position[1]+Shoe2_position[1])*0.5)
-		
 		-- final hight of the robot
 		HipJoint_position=simGetObjectPosition(Hip,line)
 		if HipJoint_position[3] > 0.3 then
@@ -145,9 +155,8 @@ threadFunction=function()
 		else
 			fallFlag = 1
 		end
-		
 		-- if robot jump forward => give penalty
-		if Shoe1_position[3]>0.2 and Shoe2_position[3]>0.2 then
+		if Shoe1_position[3]>0.4 and Shoe2_position[3]>0.4 then
 			jumpFlag = 1
 			--simAddStatusbarMessage('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 		end
@@ -166,19 +175,18 @@ threadFunction=function()
 	end
 
 
-
-
-
 -- Put some initialization code here:
 simSetThreadSwitchTiming(20) -- Default timing for automatic thread switching
 
 -- initialization parameters:
-nMotors = 5
+nMotors = 6
 nParameters = 4
 standTimeScore = 0
 previousSimulationTime=simGetSimulationTime()
+
 jumpFlag = 0
 fallFlag = 0
+LegsTogetherFlag = 0
 flag = 1
 phiWt = 0
 
@@ -187,17 +195,25 @@ Script = simGetScriptHandle()
 Object = simGetObjectAssociatedWithScript(Script)
 Name = simGetObjectName(Object)
 
+
 -- joints
 Hip=simGetObjectHandle('Hip')
 knee1=simGetObjectHandle('knee1')
 knee2=simGetObjectHandle('knee2')
 ankle1=simGetObjectHandle('ankle1')
 ankle2=simGetObjectHandle('ankle2')
+--simAddStatusbarMessage(Hip)
 
 -- other elements
 HipPosition=simGetObjectHandle('HipPosition1')
+Leg1=simGetObjectHandle('Leg1')
+Leg2=simGetObjectHandle('Leg2')
+Legs_angle=simGetObjectOrientation(Leg1,Leg2)
+calf1=simGetObjectHandle('calf1')
+calf2=simGetObjectHandle('calf2')
 Shoe1=simGetObjectHandle('Shoe1')
 Shoe2=simGetObjectHandle('Shoe2')
+
 
 -- Get the proper line handle
 numPos = string.find(Name,"#")
@@ -213,17 +229,71 @@ Shoe1_ini_Position=simGetObjectPosition(Shoe1,line)
 Shoe2_ini_Position=simGetObjectPosition(Shoe2,line)
 avg_ini_pos_shoes=((Shoe1_ini_Position[1]+Shoe2_ini_Position[1])*0.5)
 
+----------------------------Parameters------------------------------
 -- Remote Control:
 Par = getParameters()
 
--- Manual local control:
---omega_local = 0.7
--- 1)Hip, 2)knee1, 3)knee2, 4)toeOff, 5)flex
---Par={{omega_local, 0.21, 0.05, -20},
---	{omega_local, 0.1, 0.8, 0},
---	{omega_local, 0.1, 0.8, 0}, 
---	{omega_local, 0.001, 0.2, -16}, 
---	{omega_local, 0.2, 0.3, 5}}
+---- Manual local control:
+if true then
+	omega_local = 1.5
+	phi_loc_st_hip = 0.1*(omega_local/0.7) 
+	del_phi_loc_hip = 0.12*(omega_local/0.7)
+	phi_loc_st_toeOff = 0.001*(omega_local/0.7)
+	del_phi_loc_toeOff = 0.25*(omega_local/0.7)
+	phi_loc_st_flex = 0.2*(omega_local/0.7)
+	del_phi_loc_flex = 0.2*(omega_local/0.7)
+	phi_loc_PushOff = 0.3*(omega_local/0.7)
+	del_phi_PushOff = 0.1*(omega_local/0.7)
+
+	---- 1)Hip, 2)knee1, 3)knee2, 4)toeOff, 5)flex 6)Push-Off
+	Par={{omega_local, phi_loc_st_hip, del_phi_loc_hip, 0},
+		{omega_local, 0.1, 0.8, 0},
+		{omega_local, 0.1, 0.8, 0}, 
+		{omega_local, phi_loc_st_toeOff, del_phi_loc_toeOff, -35.5}, 
+		{omega_local, phi_loc_st_flex, del_phi_loc_flex, 0},
+		{omega_local, phi_loc_PushOff, del_phi_PushOff, -20}}
+end
+
+-------------- get Parameters:---------------------------------------------------
+w = Par[1][1]
+-- toeOff:
+Amplitude_toeOff = Par[4][4]
+phiStart_toeOff = 0 --Par[4][2]
+delta_Phi_toeOff = Par[4][3]
+phiEnd_toeOff = phiStart_toeOff+delta_Phi_toeOff
+if phiEnd_toeOff > 1 then
+	phiEnd_toeOff = 1
+	simAddStatusbarMessage("warning: phiEnd_toeOff was bigger than 1!!")
+end	
+-- Hip
+Amplitude_hip = Par[1][4]
+phiStart_hip = delta_Phi_toeOff + Par[1][2]	-- hip start after toe_off
+delta_Phi_hip = Par[1][3]
+phiEnd_hip = phiStart_hip+delta_Phi_hip
+-- ankle flex:
+Amplitude_flex = Par[5][4]
+phiStart_flex = phiStart_toeOff + delta_Phi_toeOff --Par[5][2] --flex starts after toe_off
+delta_Phi_flex = Par[5][3]
+phiEnd_flex = phiStart_flex+delta_Phi_flex
+if phiEnd_flex > 1 then
+	phiEnd_flex = 1
+	simAddStatusbarMessage("warning: phiEnd_flex was bigger than 1!!")
+end
+-- preemptive ankle pushOff: (in the stance leg)
+Amplitude_prePushOff = Par[6][4]
+phiStart_prePushOff = Par[6][2] 
+delta_Phi_prePushOff = Par[6][3]
+phiEnd_prePushOff = phiStart_prePushOff+delta_Phi_prePushOff
+if phiEnd_prePushOff > 1 then
+	phiEnd_prePushOff = 1
+	simAddStatusbarMessage("warning: phiEnd_prePushOff was bigger than 1!!")
+end			
+
+if phiStart_flex <  phiEnd_toeOff then-- for debbuging
+	simAddStatusbarMessage("warning: toe_off and flex applied in the same time!!")
+end
+
+---------------------------------------------------------------------------------
 
 -- Here we execute the regular thread code:
 res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)

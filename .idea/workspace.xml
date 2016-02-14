@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2eea8e92-ce7b-4a0f-9482-3ebc42653ebe" name="Default" comment="" />
+    <list default="true" id="2eea8e92-ce7b-4a0f-9482-3ebc42653ebe" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_BestPop-02_01-18_30.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_BestPop-02_01-18_33.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_BestPop-02_01-18_34.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_BestPop-02_01-18_35.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_BestPop-02_01-18_39.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_BestPop-02_01-18_41.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_BestPop-02_01-18_43.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_33.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_34.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_35.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_39.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_41.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_42.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_43.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee-02_01-18_44.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee_try4-02_01-18_29.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WalkerGA_noKnee_try4-02_01-18_30.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TEST-compass-biped/Biped_Walker_one_Robot_for_testing.ttt" afterPath="$PROJECT_DIR$/TEST-compass-biped/Biped_Walker_one_Robot_for_testing.ttt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tester/WalkerTester.py" afterPath="$PROJECT_DIR$/Tester/WalkerTester.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WalkerGA.py" afterPath="$PROJECT_DIR$/WalkerGA.py" />
+    </list>
     <ignored path="vrep-python-ai.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/Tester/WalkerTester.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="94" column="64" selection-start-line="94" selection-start-column="64" selection-end-line="94" selection-end-column="64" />
+              <caret line="95" column="67" selection-start-line="95" selection-start-column="67" selection-end-line="95" selection-end-column="67" />
               <folding>
                 <element signature="e#64#74#0" expanded="true" />
               </folding>
@@ -68,8 +90,8 @@
       <file leaf-file-name="WalkerGA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WalkerGA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51836735">
-              <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.76955163">
+              <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
               <folding>
                 <element signature="e#64#95#0" expanded="true" />
               </folding>
@@ -92,6 +114,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -213,17 +236,13 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="vrep-python-ai">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="C:/Anaconda2/python.exe" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_c7e0cbde92ba565cb218a521411d0e854079a28c/cmd/git.exe" />
     <property name="options.lastSelected" value="vcs.Git" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -509,25 +528,25 @@
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15877287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15877287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3069909" sideWeight="0.5043057" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826748" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22695035" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39716312" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22695035" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826748" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39716312" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -574,7 +593,7 @@
     <entry file="file://$PROJECT_DIR$/TEST-compass-biped/RunTrialBiped.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
           <folding>
             <element signature="e#48#58#0" expanded="true" />
           </folding>
@@ -936,26 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TEST-compass-biped/RunTrialBiped.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="e#48#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GenAlg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="153" column="49" selection-start-line="153" selection-start-column="49" selection-end-line="153" selection-end-column="49" />
-          <folding>
-            <element signature="e#31#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Builder/Builder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -972,20 +971,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TEST-compass-biped/RunTrialBiped.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+          <folding>
+            <element signature="e#48#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Tester/WalkerTester.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="64" selection-start-line="94" selection-start-column="64" selection-end-line="94" selection-end-column="64" />
+          <caret line="95" column="67" selection-start-line="95" selection-start-column="67" selection-end-line="95" selection-end-column="67" />
           <folding>
             <element signature="e#64#74#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GenAlg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="153" column="49" selection-start-line="153" selection-start-column="49" selection-end-line="153" selection-end-column="49" />
+          <folding>
+            <element signature="e#31#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WalkerGA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51836735">
-          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.76955163">
+          <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
           <folding>
             <element signature="e#64#95#0" expanded="true" />
           </folding>
